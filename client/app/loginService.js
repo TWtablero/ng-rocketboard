@@ -21,8 +21,6 @@ app.factory("LoginService", function($q, $http) {
     isLoggedIn: function() {
       var promise = $q.defer();
 
-      console.log(that.access_token);
-
       if (that.access_token) {
         promise.resolve(true);
         return promise.promise;

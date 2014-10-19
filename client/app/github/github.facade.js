@@ -1,6 +1,6 @@
 var app = angular.module('rockboardApp');
 
-app.factory('RepositoryFacade', function(RepositoryList, GithubRepository, LoginService, $http) {
+app.factory('GithubFacade', function(GithubRepository, LoginService, $http) {
 
   return {
 

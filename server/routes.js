@@ -12,7 +12,8 @@ module.exports = function(app) {
   var clientId = "c8e53a399aaaf4423852";
   var sectretId = "cf21bef34d5efa99fb4b8894017b9cf6c263b8a3";
   var cookieParser = require('cookie-parser');
-  var session = require('express-session')
+  var session = require('express-session');
+  var config = require('./config/environment');
 
   // Here come dragons.
   app.use("/api/github/", function(req, res) {
@@ -36,6 +37,10 @@ module.exports = function(app) {
     }
 
     res.redirect("/home");
+  });
+
+  app.use("/api/repositories", function(req, res){
+    res.json(200, config.repositories);
   });
 
   app.use("/api/logout", function(req, res) {
