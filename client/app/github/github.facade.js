@@ -13,6 +13,10 @@ app.factory('GithubFacade', function(GithubRepository, LoginService, $http) {
 
     getIssuesFromRepository: function(repository) {
       return GithubRepository.getIssuesFromRepository(repository);
+    },
+
+    fetchRepositories: function() {
+      return $http.get("/api/repositories");
     }
   }
 

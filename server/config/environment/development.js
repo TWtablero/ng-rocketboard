@@ -8,15 +8,26 @@ module.exports = {
     uri: 'mongodb://localhost/rockboard-dev'
   },
 
+  // repositories: [{
+  //   username: "marcioviegas",
+  //   name: "rocketboard-1"
+  // },{
+  //   username: "marcioviegas",
+  //   name: "rocketboard-2"
+  // },{
+  //   username: "marcioviegas",
+  //   name: "rocketboard-3"
+  // }],
+
   repositories: [{
-    username: "marcioviegas",
-    name: "rocketboard-1"
-  },{
-    username: "marcioviegas",
-    name: "rocketboard-2"
-  },{
-    username: "marcioviegas",
-    name: "rocketboard-3"
+    username: "pixelated-project",
+    name: "pixelated-user-agent"
+  }, {
+    username: "pixelated-project",
+    name: "pixelated-dispatcher"
+  }, {
+    username: "pixelated-project",
+    name: "pixelated-platform"
   }],
 
   seedDB: true

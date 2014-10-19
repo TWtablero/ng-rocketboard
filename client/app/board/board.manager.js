@@ -14,17 +14,8 @@ app.factory('BoardManager', function(GithubRepository, $http) {
       return that.repositories;
     },
 
-    getAllRepositories: function(){
+    getAllRepositories: function() {
       return that.allRepositories;
-    },
-
-    fetchRepositories: function() {
-      return $http.get("/api/repositories").then(function(res) {
-        that.allRepositories = res.data;
-        that.repositories = res.data;
-        console.log(that.repositories);
-        return res.data;
-      });
     }
   }
 

@@ -7,19 +7,23 @@ app.service('BoardFactory', ['BoardManipulator', function(BoardManipulator) {
     "name": "Spring Board",
     "numberOfColumns": 4,
     "columns": [{
-      "label": "backlog",
-      "name": "Sprint Backlog",
+      "label": "0 - Backlog",
+      "name": "Backlog",
       "issues": []
     }, {
-      "label": "developing",
-      "name": "Developing",
+      "label": "1 - Ready",
+      "name": "Ready",
       "issues": []
     }, {
-      "label": "qa",
-      "name": "QA",
+      "label": "2 - Development",
+      "name": "Development",
       "issues": []
     }, {
-      "label": "done",
+      "label": " 3 - Quality Assurance",
+      "name": "Quality Assurance",
+      "issues": []
+    }, {
+      "label": "4 - Done",
       "name": "Done",
       "issues": []
     }]

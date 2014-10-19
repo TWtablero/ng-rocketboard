@@ -1,17 +1,10 @@
-function Repository(username, name) {
-  return {
-    username: username,
-    name: name,
-    issues: []
-  }
-}
-
 function Board(name, numberOfColumns) {
   return {
     name: name,
     numberOfColumns: numberOfColumns,
     columns: [],
     withoutStatusIssues: [],
+    repositories: [],
     getColumn: function(tag) {
       return _.findWhere(this.columns, {
         tag: tag

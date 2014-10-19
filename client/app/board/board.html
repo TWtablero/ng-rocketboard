@@ -1,8 +1,12 @@
 <div class="container">
 
-  <div class="row" ng-controller="BoardMenuController">
-    
-
+  <div class="row">
+      <ui-select multiple ng-model="multipleOptions.selectedRepositories" theme="bootstrap">
+        <ui-select-match placeholder="Selecione os repositories">{{$item.name}}</ui-select-match>
+        <ui-select-choices repeat="repository in repositories | filter: $select.search">
+          {{repository.name}}
+        </ui-select-choices>
+      </ui-select>
   </div>
 
   <div class="row" ng-show='board.withoutStatusIssues.length > 0'>

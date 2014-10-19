@@ -1,16 +1,30 @@
 'use strict';
 
-angular.module('rockboardApp').controller('BoardController', function($scope, BoardFactory, GithubFacade, BoardManipulator, BoardManager) {
+angular.module('rockboardApp').controller('BoardController', function($rootScope, $scope, BoardFactory, GithubFacade, BoardManipulator, BoardManager) {
 
   $scope.board = BoardFactory.createSpringBoard();
 
-  // We all know I can make it better, but ...
-  $scope.$on('repositories:changed', function() {
-    _.forEach(BoardManager.getRepositories(), function(repository) {
-      GithubFacade.getIssuesFromRepository(repository).then(function(issues) {
-        BoardManipulator.addIssues($scope.board, issues.data, BoardManager.getRepositories());
-      });
+  $scope.multipleOptions = {};
+
+  $scope.multipleOptions.selectedRepositories = [];
+
+  GithubFacade.fetchRepositories().then(function(res) {
+    $scope.repositories = res.data;
+  });
+
+  $scope.$watch("multipleOptions.selectedRepositories", function() {
+    BoardManipulator.cleanBoard($scope.board, $scope.multipleOptions.selectedRepositories);
+
+    _.forEach($scope.multipleOptions.selectedRepositories, function(repository) {
+      if (!repository.issues)
+        GithubFacade.getIssuesFromRepository(repository).then(function(issues) {
+          repository.issues = issues.data
+          BoardManipulator.addRepository($scope.board, repository);
+        });
+      else
+        BoardManipulator.addRepository($scope.board, repository);
     });
+
   });
 
   $scope.boardSortOptions = {
@@ -23,12 +37,5 @@ angular.module('rockboardApp').controller('BoardController', function($scope, Bo
 
     orderChanged: function(event) {}
   };
-
-}).controller("BoardMenuController", function($rootScope, $scope, $http, BoardManager) {
-
-  BoardManager.fetchRepositories().then(function(res) {
-    $scope.repositories = res.data;
-    $rootScope.$broadcast("repositories:changed");
-  });
 
 });

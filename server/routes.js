@@ -31,7 +31,6 @@ module.exports = function(app) {
 
     //TODO: Separar o access_token e validar se tem também :D
     req.session.access_token = xhr.responseText;
-
     if (xhr.responseText.indexOf("access_token") == -1) {
       res.redirect("https://github.com/login/oauth/authorize/?client_id=c8e53a399aaaf4423852&scope=public_repo");
     }
