@@ -1,0 +1,26 @@
+{
+  "name": "rockboard",
+  "version": "0.0.0",
+  "dependencies": {
+    "js-base64": "latest",
+    "angular": ">=1.2.*",
+    "json3": "~3.3.1",
+    "es5-shim": "~3.0.1",
+    "jquery": "~1.11.0",
+    "bootstrap": "~3.1.1",
+    "angular-resource": ">=1.2.*",
+    "angular-cookies": ">=1.2.*",
+    "angular-sanitize": ">=1.2.*",
+    "angular-route": ">=1.2.*",
+    "font-awesome": ">=4.1.0",
+    "lodash": "~2.4.1",
+    "ng-sortable": "~1.1.2",
+    "oauth-ng": "~0.2.6",
+    "angular-ui-router": "~0.2.11",
+    "angular-ui-select": "~0.8.3"
+  },
+  "devDependencies": {
+    "angular-mocks": ">=1.2.*",
+    "angular-scenario": ">=1.2.*"
+  }
+}

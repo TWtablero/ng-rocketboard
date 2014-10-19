@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row" ng-show='board.withoutStatusIssues.length > 0'>
+    <div class="col-sm-4">
+      <ui-select multiple ng-model="issues.selected" theme="bootstrap">
+        <ui-select-match placeholder="Selecione issues para adionar ao backlog">#{{$item.number}}</ui-select-match>
+        <ui-select-choices repeat="issue in board.withoutStatusIssues | filter: $select.search">
+          #{{issue.number}}</br>
+          <small>
+            {{issue.title}}
+          </small>
+        </ui-select-choices>
+      </ui-select>
+    </div>
+    {{issues}}
+    <div class="col-sm-4">
+      <button class="btn btn-default btn-sm" ng-click="addToBoard()">Adicionar</button>
+    </div>
+  </div>
+
+  <div ng-model="allIssues">
+    <div id="columns" class="row">
+      <div class="col-sm-{{12/board.numberOfColumns}} col-xs-{{12/board.numberOfColumns}}" ng-repeat="column in board.columns" data-columnindex="{{$index}}" id="column{{$index}}">
+        <div class="column panel">
+          <div class="columnHeader">
+            <span>{{column.name}} ({{column.issues.length}})</span>
+          </div>
+          <ul class="issues issue-list" as-sortable="boardSortOptions" ng-model="column.issues">
+            <li class="issue" ng-repeat="issue in column.issues" as-sortable-item>
+              <div as-sortable-item-handle>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <span class="issue-title">{{issue.title}}</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
