@@ -7,14 +7,16 @@
       </div>
       <div class="col-sm-6 repositories">
         <ui-select multiple ng-model="multipleOptions.selectedRepositories" theme="bootstrap">
-          <ui-select-match placeholder="Selecione os repositories">{{$item.name}}</ui-select-match>
+          <ui-select-match placeholder="Click here to select repositories">{{$item.name}}</ui-select-match>
           <ui-select-choices repeat="repository in repositories | filter: $select.search">
             {{repository.name}}
           </ui-select-choices>
         </ui-select>
       </div>
       <div class="col-xs-3">
-        <button class="btn btn-default pull-right">Criar issue</button>
+         <button class="btn btn-default pull-right">Criar issue</button>
+         <input type="text" class="issue-search pull-right" ng-model="issueSearch.number" placeholder="Search"></input>
+         <i class="fa fa-ban fa-fw pull-right" style="color:white" ng-show="issueSearch.number" ng-click="issueSearch.number = ''"></i>
       </div>
     </div>
   </div>
@@ -30,7 +32,7 @@
           </div>
           <div class="column-body">
             <ul class="issues issue-list" as-sortable="boardSortOptions" ng-model="column.issues">
-              <li ng-repeat="issue in column.issues" as-sortable-item>
+              <li ng-repeat="issue in column.issues | filter:issueSearch " as-sortable-item>
                 <div as-sortable-item-handle class="issue">
                   <div class="issue-header">
                     <div target="_blank" class="issue-number pull-right" style="background-color:{{issue.repository.color}}">

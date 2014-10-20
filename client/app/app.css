@@ -22,6 +22,10 @@
  * App-wide Styles
  */
 
+
+*:focus, *:hover {
+    outline: 0 !important;
+}
 .logo {
     width: 200px;
 }
@@ -42,8 +46,9 @@
 .ui-select-multiple input {
     text-align: center;
 }
-.repositories {
-    padding-top: 6px;
+.repositories input{
+    font-size:16px;
+    margin-top:3px;
 }
 .navbar .btn {
     margin-top: 4px;
@@ -101,18 +106,15 @@ footer {
     max-height: 450px;
     overflow-y: scroll;
 }
-
 ::-webkit-scrollbar {
-   -webkit-appearance: none;
-   width: 6px;
+    -webkit-appearance: none;
+    width: 6px;
 }
-
 ::-webkit-scrollbar-thumb {
-   border-radius: 4px;
-   background-color: rgba(0,0,0,.15);
-   -webkit-box-shadow: 0 0 1px rgba(255,255,255,.15);
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .15);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .15);
 }
-
 .issue a {
     color: black;
 }
@@ -121,8 +123,8 @@ footer {
     background-color: #eaeaea;
     border: 1px solid #ddd;
 }
-.ui-select-match-close{
-    margin-top:2px;
+.ui-select-match-close {
+    margin-top: 2px;
 }
 .issue-header {
     background-color: #d6d6d6;
@@ -143,4 +145,21 @@ footer {
 }
 .column-header .fa-plus-square {
     cursor: pointer;
+}
+.issue-search {
+    background: 0;
+    border: 0;
+    width: 80px;
+    font-size: 16px;
+    margin-top: 11px;
+    color: white;
+    text-align: center;
+    margin-right: 15px;
+}
+.clear-select {
+    position: absolute;
+    margin-top: -42px;
+    margin-left: -6px;
+    cursor: pointer;
+    z-index: 1000 !important;
 }
