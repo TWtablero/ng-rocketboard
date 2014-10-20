@@ -30,16 +30,20 @@
     height: 65px;
     padding: 10px;
 }
-.navbar .ui-select-multiple input{
+.ui-select-multiple input{
     cursor: pointer !important;
 }
-.navbar .ui-select-multiple {
-    background: 0;
-    border: 0;
-    box-shadow: none;
-    color: white;
+.ui-select-multiple {
+    background: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
     cursor: pointer !important;
 }
+
+.ui-select-multiple input {
+    text-align: center;
+}
+
 .repositories {
     padding-top: 6px;
 }

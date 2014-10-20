@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rockboardApp').controller('BoardAddIssueController', function($modal, $scope, BoardFactory) {
+angular.module('rockboardApp').controller('BoardAddIssueController', function($modal, $scope, BoardManipulator, GithubFacade) {
   var that = this;
 
   this.boardIssueModal = $modal({
@@ -12,12 +12,19 @@ angular.module('rockboardApp').controller('BoardAddIssueController', function($m
     animation: "am-fade"
   });
 
-  $scope.showModal = function() {
-    that.boardIssueModal.$promise.then(that.boardIssueModal.show);
+  $scope.addToBoard = function() {
+    _.forEach($scope.multipleOptions.selectedIssues, function(issue) {
+      GithubFacade.addIssueLabel(issue, $scope.board.columns[0].label).then(function() {
+        BoardManipulator.removeIssueWithoutStatus($scope.board, issue);
+        BoardManipulator.addIssueToColumn($scope.board, issue);
+      });
+    });
+    $scope.multipleOptions.selectedIssues.splice(0);
+    that.boardIssueModal.$promise.then(that.boardIssueModal.hide);
   };
 
-  $scope.hideModal = function() {
-    that.boardIssueModal.$promise.then(that.boardIssueModal.hide);
+  $scope.showModal = function() {
+    that.boardIssueModal.$promise.then(that.boardIssueModal.show);
   };
 
 });

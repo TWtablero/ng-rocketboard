@@ -8,11 +8,11 @@
       </div>
       <div class="modal-body">
         <ui-select multiple ng-model="multipleOptions.selectedIssues" theme="bootstrap">
-          <ui-select-match placeholder="Selecione issues para adionar ao backlog">#{{$item.number}}</ui-select-match>
+          <ui-select-match placeholder="Clique aqui para adicionar as issues">#{{$item.number}} - {{issue.title}}</ui-select-match>
           <ui-select-choices repeat="issue in board.withoutStatusIssues | filter: $select.search">
-            #{{issue.number}}</br>
+            #{{issue.number}} - {{issue.title}}</br>
             <small>
-              {{issue.title}}
+              {{issue.repository.name}} 
             </small>
           </ui-select-choices>
         </ui-select>
