@@ -2842,47 +2842,7 @@ fieldset[disabled] .btn-primary.active {
   color: #d9230f;
   background-color: #ffffff;
 }
-.btn-success {
-  color: #ffffff;
-  background-color: #469408;
-  border-color: #469408;
-}
-.btn-success:hover,
-.btn-success:focus,
-.btn-success:active,
-.btn-success.active,
-.open > .dropdown-toggle.btn-success {
-  color: #ffffff;
-  background-color: #2f6405;
-  border-color: #2b5a05;
-}
-.btn-success:active,
-.btn-success.active,
-.open > .dropdown-toggle.btn-success {
-  background-image: none;
-}
-.btn-success.disabled,
-.btn-success[disabled],
-fieldset[disabled] .btn-success,
-.btn-success.disabled:hover,
-.btn-success[disabled]:hover,
-fieldset[disabled] .btn-success:hover,
-.btn-success.disabled:focus,
-.btn-success[disabled]:focus,
-fieldset[disabled] .btn-success:focus,
-.btn-success.disabled:active,
-.btn-success[disabled]:active,
-fieldset[disabled] .btn-success:active,
-.btn-success.disabled.active,
-.btn-success[disabled].active,
-fieldset[disabled] .btn-success.active {
-  background-color: #469408;
-  border-color: #469408;
-}
-.btn-success .badge {
-  color: #469408;
-  background-color: #ffffff;
-}
+
 .btn-info {
   color: #ffffff;
   background-color: #029acf;
@@ -6199,16 +6159,7 @@ button.close {
   filter: none;
   border: 1px solid #a91b0c;
 }
-.btn-success,
-.btn-success:hover {
-  background-image: -webkit-linear-gradient(#4da309, #469408 6%, #3f8507);
-  background-image: -o-linear-gradient(#4da309, #469408 6%, #3f8507);
-  background-image: linear-gradient(#4da309, #469408 6%, #3f8507);
-  background-repeat: no-repeat;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff4da309', endColorstr='#ff3f8507', GradientType=0);
-  filter: none;
-  border: 1px solid #2f6405;
-}
+
 .btn-info,
 .btn-info:hover {
   background-image: -webkit-linear-gradient(#02a5de, #029acf 6%, #028fc0);

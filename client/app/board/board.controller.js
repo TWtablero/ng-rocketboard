@@ -3,9 +3,7 @@
 angular.module('rockboardApp').controller('BoardController', function($rootScope, $scope, BoardFactory, GithubFacade, BoardManipulator, BoardManager) {
 
   $scope.board = BoardFactory.createSpringBoard();
-
   $scope.multipleOptions = {};
-
   $scope.multipleOptions.selectedRepositories = [];
   $scope.multipleOptions.selectedIssues = [];
 
@@ -25,7 +23,6 @@ angular.module('rockboardApp').controller('BoardController', function($rootScope
 
   $scope.$watch("multipleOptions.selectedRepositories", function() {
     BoardManipulator.cleanBoard($scope.board, $scope.multipleOptions.selectedRepositories);
-
     _.forEach($scope.multipleOptions.selectedRepositories, function(repository) {
       if (!repository.issues)
         GithubFacade.getIssuesFromRepository(repository).then(function(issues) {
@@ -35,7 +32,6 @@ angular.module('rockboardApp').controller('BoardController', function($rootScope
       else
         BoardManipulator.addRepository($scope.board, repository);
     });
-
   });
 
   $scope.boardSortOptions = {

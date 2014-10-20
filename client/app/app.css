@@ -43,6 +43,11 @@
 .repositories {
     padding-top: 6px;
 }
+
+
+.navbar .btn{
+    margin-top:4px;
+}
 #wrap {
     height: auto;
     min-height: 100%;
@@ -76,7 +81,7 @@ footer {
 }
 .page-header {
     border: 0 !important;
-    margin-top: 80px !important;
+    margin-top: 50px !important;
     margin-bottom: 15px !important;
 }
 .column-body ul {
@@ -117,4 +122,8 @@ footer {
 }
 .issue-assigned {
     padding: 10px;
+}
+
+.column-header .fa-plus-square{
+    cursor: pointer;
 }

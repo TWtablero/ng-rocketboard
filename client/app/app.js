@@ -1,5 +1,5 @@
 
-var app = angular.module('rockboardApp', ['ngCookies', 'ngResource', 'ui.select', 'ngSanitize', 'ngRoute', 'ui.sortable', 'oauth'])
+var app = angular.module('rockboardApp', ['ngCookies', 'mgcrea.ngStrap', 'ngResource', 'ui.select', 'ngSanitize', 'ngRoute', 'ui.sortable', 'oauth'])
 
 app.config(function($httpProvider, $routeProvider, $locationProvider, $httpProvider) {
 

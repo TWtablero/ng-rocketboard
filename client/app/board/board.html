@@ -18,68 +18,39 @@
       </div>
     </div>
   </div>
-</nav>
 
-
-
-<div class="container">
-
-  <div class="row page-header" ng-model="allIssues">
-    <div id="columns" class="row">
-      <div class="col-sm-{{12/board.numberOfColumns}} col-xs-{{12/board.numberOfColumns}}" ng-repeat="column in board.columns" data-columnindex="{{$index}}" id="column{{$index}}">
-        <div class="column">
-          <div class="column-header">
-            <i class="fa fa-plus-square" ng-show="$index == 0 && board.withoutStatusIssues.length > 0"></i>
-            <span>{{column.name}} ({{column.issues.length}})</span>
-          </div>
-          <div class="column-body">
-            <ul class="issues issue-list" as-sortable="boardSortOptions" ng-model="column.issues">
-              <li ng-repeat="issue in column.issues" as-sortable-item>
-                <div as-sortable-item-handle class="issue">
-                  <div class="issue-header">
-                    <div target="_blank" class="issue-number pull-right">
-                      <a class="issue-number right">#{{issue.number}}</a>
+  <div class="container">
+    <div class="row page-header" ng-model="allIssues">
+      <div id="columns" class="row">
+        <div class="col-sm-{{12/board.numberOfColumns}} col-xs-{{12/board.numberOfColumns}}" ng-repeat="column in board.columns" data-columnindex="{{$index}}" id="column{{$index}}">
+          <div class="column">
+            <div class="column-header">
+              <i class="fa fa-plus-square" ng-show="$index == 0 && board.withoutStatusIssues.length > 0" ng-controller="BoardAddIssueController" ng-click="showModal()"></i>
+              <span>{{column.name}} ({{column.issues.length}})</span>
+            </div>
+            <div class="column-body">
+              <ul class="issues issue-list" as-sortable="boardSortOptions" ng-model="column.issues">
+                <li ng-repeat="issue in column.issues" as-sortable-item>
+                  <div as-sortable-item-handle class="issue">
+                    <div class="issue-header">
+                      <div target="_blank" class="issue-number pull-right">
+                        <a class="issue-number right">#{{issue.number}}</a>
+                      </div>
+                      <div class="issue-assigned">
+                        <a class="assigns-myself">
+                          <span class="btn btn-default btn-xs"><i class="fa fa-user"></i> ASSIGN ME</span>
+                        </a>
+                      </div>
                     </div>
-                    <div class="issue-assigned">
-                      <a class="assigns-myself">
-                        <span class="btn btn-default btn-xs"><i class="fa fa-user"></i> ASSIGN ME</span>
-                      </a>
+                    <div class="issue-body"><a class="title list-group-item-heading" href="" target="_blank">{{issue.title}}</a>
                     </div>
+                    <div class="labels"></div>
                   </div>
-                  <div class="issue-body"><a class="title list-group-item-heading" href="" target="_blank">{{issue.title}}</a>
-                  </div>
-                  <div class="labels"></div>
-                </div>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row page-header">
-    <div class="col-xs-3">
-      <h4 class="page-title">Sprint Backlog</h4>
-    </div>
-    <div class="col-sm-3">
-      <ui-select multiple ng-model="multipleOptions.selectedIssues" theme="bootstrap">
-        <ui-select-match placeholder="Selecione issues para adionar ao backlog">#{{$item.number}}</ui-select-match>
-        <ui-select-choices repeat="issue in board.withoutStatusIssues | filter: $select.search">
-          #{{issue.number}}</br>
-          <small>
-            {{issue.title}}
-          </small>
-        </ui-select-choices>
-      </ui-select>
-    </div>
-    {{issues}}
-    <div class="col-sm-1">
-      <button class="btn btn-default btn-sm" ng-click="addToBoard()">Adicionar</button>
-    </div>
-    <div class="col-xs-5">
-
-    </div>
-  </div>
-
-
-</div>
