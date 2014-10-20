@@ -30,7 +30,7 @@
     height: 65px;
     padding: 10px;
 }
-.ui-select-multiple input{
+.ui-select-multiple input {
     cursor: pointer !important;
 }
 .ui-select-multiple {
@@ -39,18 +39,14 @@
     box-shadow: none !important;
     cursor: pointer !important;
 }
-
 .ui-select-multiple input {
     text-align: center;
 }
-
 .repositories {
     padding-top: 6px;
 }
-
-
-.navbar .btn{
-    margin-top:4px;
+.navbar .btn {
+    margin-top: 4px;
 }
 #wrap {
     height: auto;
@@ -85,7 +81,7 @@ footer {
 }
 .page-header {
     border: 0 !important;
-    margin-top: 50px !important;
+    margin-top: 90px !important;
     margin-bottom: 15px !important;
 }
 .column-body ul {
@@ -101,6 +97,22 @@ footer {
     font-weight: bold;
     margin-bottom: 10px;
 }
+.column-body {
+    max-height: 450px;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+   -webkit-appearance: none;
+   width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+   border-radius: 4px;
+   background-color: rgba(0,0,0,.15);
+   -webkit-box-shadow: 0 0 1px rgba(255,255,255,.15);
+}
+
 .issue a {
     color: black;
 }
@@ -109,17 +121,19 @@ footer {
     background-color: #eaeaea;
     border: 1px solid #ddd;
 }
+.ui-select-match-close{
+    margin-top:2px;
+}
 .issue-header {
     background-color: #d6d6d6;
-    height: 40px;
+    height: 42px;
 }
 .issue-body {
     padding: 10px;
 }
 .issue-number {
     font-size: 16px;
-    padding: 9px;
-    background-color: #3cb878;
+    padding: 10px;
 }
 .issue-number a {
     color: white !important;
@@ -127,7 +141,6 @@ footer {
 .issue-assigned {
     padding: 10px;
 }
-
-.column-header .fa-plus-square{
+.column-header .fa-plus-square {
     cursor: pointer;
 }

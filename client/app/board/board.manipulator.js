@@ -1,6 +1,6 @@
 var app = angular.module("rockboardApp");
 
-app.factory('BoardManipulator', function() {
+app.factory('BoardManipulator', function(ColorPicker) {
   var that = this;
   that.repositories = [];
 
@@ -35,12 +35,6 @@ app.factory('BoardManipulator', function() {
     board.withoutStatusIssues.splice(board.withoutStatusIssues.indexOf(issue), 1);
   };
 
-  this.removeIssues = function(board, repository) {
-    _.forEach(repository.issues, function(issue) {
-
-    });
-  };
-
   // Not proud of this either
   this.cleanBoard = function(board, repositories) {
     _.forEach(board.columns, function(col) {
@@ -66,6 +60,8 @@ app.factory('BoardManipulator', function() {
     cleanBoard: that.cleanBoard,
 
     addRepository: function(board, repository) {
+      if(!repository.color)
+      repository.color = ColorPicker.getNextColor();
       board.repositories.push(repository);
       that.addIssues(board, repository);
     }

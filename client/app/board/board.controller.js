@@ -11,19 +11,22 @@ angular.module('rockboardApp').controller('BoardController', function($rootScope
     $scope.repositories = res.data;
   });
 
-
-
   $scope.$watch("multipleOptions.selectedRepositories", function() {
+    //TODO: Please, change this!
     BoardManipulator.cleanBoard($scope.board, $scope.multipleOptions.selectedRepositories);
     _.forEach($scope.multipleOptions.selectedRepositories, function(repository) {
       if (!repository.issues)
         GithubFacade.getIssuesFromRepository(repository).then(function(issues) {
           repository.issues = issues.data
           BoardManipulator.addRepository($scope.board, repository);
+          $("span:contains('" + repository.name + "')").closest(".ui-select-match-item").css("background", repository.color);
         });
-      else
+      else{
         BoardManipulator.addRepository($scope.board, repository);
+        $("span:contains('" + repository.name + "')").closest(".ui-select-match-item").css("background", repository.color);
+      }
     });
+
   });
 
   $scope.boardSortOptions = {
