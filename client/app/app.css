@@ -50,7 +50,7 @@
     font-size:16px;
     margin-top:3px;
 }
-.navbar .btn {
+.navbar .add-issues {
     margin-top: 4px;
 }
 #wrap {
@@ -163,3 +163,4 @@ footer {
     cursor: pointer;
     z-index: 1000 !important;
 }
+
