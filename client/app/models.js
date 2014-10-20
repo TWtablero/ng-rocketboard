@@ -4,12 +4,7 @@ function Board(name, numberOfColumns) {
     numberOfColumns: numberOfColumns,
     columns: [],
     withoutStatusIssues: [],
-    repositories: [],
-    getColumn: function(tag) {
-      return _.findWhere(this.columns, {
-        tag: tag
-      });
-    }
+    repositories: []
   }
 }
 

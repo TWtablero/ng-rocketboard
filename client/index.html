@@ -26,6 +26,7 @@
   <!-- build:css({.tmp,client}) app/app.css -->
   <!-- injector:css -->
   <link rel="stylesheet" href="app/app.css">
+  <link rel="stylesheet" href="app/simplex.css">
   <!-- endinjector -->
   <!-- endbuild -->
 </head>
@@ -37,8 +38,11 @@
     <![endif]-->
 
   <!-- Add your site or application content here -->
-  <div ng-view=""></div>
-
+   <div id="wrap">
+        <content ng-view=""></content>
+    </div>
+    <div ng-include="'components/footer/footer.html'"></div>
+  
   <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
@@ -74,7 +78,6 @@
   <script src="app/loginService.js"></script>
   <script src="app/models.js"></script>
   <script src="app/sprint/sprint.controller.js"></script>
-  <script src="components/navbar/navbar.controller.js"></script>
   <!-- endinjector -->
   <!-- endbuild -->
 </body>

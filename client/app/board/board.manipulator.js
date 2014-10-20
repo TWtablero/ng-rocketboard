@@ -6,11 +6,12 @@ app.factory('BoardManipulator', function() {
 
   that.addIssueToColumn = function(board, issue) {
     _.forEach(board.columns, function(col) {
-      if (_.contains(_.pluck(issue.labels, "name"), col.label)) {
+      if (issue.status == col.label || _.contains(_.pluck(issue.labels, "name"), col.label)) {
         issue.status = col.label;
         col.issues.push(issue);
       }
     });
+
     if (!issue.status)
       board.withoutStatusIssues.push(issue);
   };
@@ -30,6 +31,10 @@ app.factory('BoardManipulator', function() {
     });
   };
 
+  this.removeIssueWithoutStatus = function(board, issue) {
+    board.withoutStatusIssues.splice(board.withoutStatusIssues.indexOf(issue), 1);
+  };
+
   this.removeIssues = function(board, repository) {
     _.forEach(repository.issues, function(issue) {
 
@@ -41,6 +46,7 @@ app.factory('BoardManipulator', function() {
     _.forEach(board.columns, function(col) {
       col.issues.splice(0);
     });
+    board.repositories.splice(0);
     board.withoutStatusIssues.splice(0);
   };
 
@@ -54,6 +60,8 @@ app.factory('BoardManipulator', function() {
     removeIssueFromColumn: this.removeIssueFromColumn,
 
     addIssues: that.addIssues,
+
+    removeIssueWithoutStatus: that.removeIssueWithoutStatus,
 
     cleanBoard: that.cleanBoard,
 

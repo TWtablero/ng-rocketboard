@@ -7,10 +7,21 @@ angular.module('rockboardApp').controller('BoardController', function($rootScope
   $scope.multipleOptions = {};
 
   $scope.multipleOptions.selectedRepositories = [];
+  $scope.multipleOptions.selectedIssues = [];
 
   GithubFacade.fetchRepositories().then(function(res) {
     $scope.repositories = res.data;
   });
+
+  $scope.addToBoard = function() {
+    _.forEach($scope.multipleOptions.selectedIssues, function(issue) {
+      GithubFacade.addIssueLabel(issue, $scope.board.columns[0].label).then(function() {
+        BoardManipulator.removeIssueWithoutStatus($scope.board, issue);
+        BoardManipulator.addIssueToColumn($scope.board, issue);
+      });
+    })
+    $scope.multipleOptions.selectedIssues.splice(0);
+  };
 
   $scope.$watch("multipleOptions.selectedRepositories", function() {
     BoardManipulator.cleanBoard($scope.board, $scope.multipleOptions.selectedRepositories);

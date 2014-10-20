@@ -10,21 +10,17 @@ app.service('BoardFactory', ['BoardManipulator', function(BoardManipulator) {
       "label": "0 - Backlog",
       "name": "Backlog",
       "issues": []
-    }, {
+    },{
       "label": "1 - Ready",
       "name": "Ready",
       "issues": []
-    }, {
+    },  {
       "label": "2 - Development",
       "name": "Development",
       "issues": []
     }, {
-      "label": " 3 - Quality Assurance",
+      "label": "3 - Quality Assurance",
       "name": "Quality Assurance",
-      "issues": []
-    }, {
-      "label": "4 - Done",
-      "name": "Done",
       "issues": []
     }]
   }
