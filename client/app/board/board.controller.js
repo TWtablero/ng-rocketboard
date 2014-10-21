@@ -14,12 +14,6 @@ angular.module('rockboardApp').controller('BoardController', function($rootScope
     BoardManager.changeRepositories($scope.multipleOptions.selectedRepositories);
   });
 
-  $scope.click = function() {
-    _.forEach(BoardManager.board.repositories[0].issues, function(issue){
-      issue.status = "0 - Backlog";
-    });
-  }
-
   $scope.boardSortOptions = {
     containment: '#board',
     itemMoved: function(event) {
