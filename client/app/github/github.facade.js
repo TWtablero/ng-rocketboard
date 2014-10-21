@@ -5,8 +5,8 @@ app.factory('GithubFacade', function(GithubRepository, LoginService, $http) {
   return {
 
     changeIssueLabel: function(issue, label) {
-      return GithubRepository.removeLabelFromIssue(issue, issue.status).then(function() {
-        return GithubRepository.addLabelOnIssue(issue, label).then(function(res) {
+      return GithubRepository.removeLabelFromIssue(issue, label).then(function() {
+        return GithubRepository.addLabelOnIssue(issue, issue.status).then(function(res) {
           issue.labels = res.data;
           return res;
         });

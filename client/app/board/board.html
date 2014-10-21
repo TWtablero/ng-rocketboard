@@ -29,7 +29,7 @@
         <div class="column">
           <div class="column-header">
             <i class="fa fa-plus-square" ng-show="$index == 0 && board.withoutStatusIssues.length > 0" ng-controller="BoardAddIssueController" ng-click="showModal()"></i>
-            <span>{{column.name}} ({{column.issues.length}})</span>
+            <span>{{column.name}} ({{(board.issues | statusFilter:column.label | filter:issueSearch).length}})</span>
           </div>
           <div class="column-body">
             <ul class="issues issue-list" as-sortable="boardSortOptions" ng-model="column.issues">

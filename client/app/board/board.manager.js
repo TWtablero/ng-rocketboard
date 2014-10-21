@@ -9,17 +9,27 @@ app.service('BoardManager', function(GithubFacade, BoardFactory) {
 
     if (this.getRepository(issue.repository.id)) {
 
+      console.log(_.findIndex(this.getRepository(issue.repository.id).issues, {
+        id: issue.id
+      }))
+
       this.getRepository(issue.repository.id).issues.splice(_.findIndex(this.getRepository(issue.repository.id).issues, {
         id: issue.id
       }), 1);
 
-      this.board.issues.splice(_.findIndex(that.board.issues, {
-        id: issue.id
-      }), 1);
-
-      that.board.issues.push(issue);
-      
       this.getRepository(issue.repository.id).issues.push(issue);
+      console.log(issue.status)
+
+      if (_.findIndex(that.board.issues, {
+          id: issue.id
+        }) > -1) {
+
+        this.board.issues.splice(_.findIndex(that.board.issues, {
+          id: issue.id
+        }), 1);
+
+        that.board.issues.push(issue);
+      }
 
     }
   };

@@ -8,10 +8,14 @@ app.service('IssueManager', function(GithubFacade, BoardFactory, socket, BoardMa
   });
 
   this.changeIssueStatus = function(issue, status) {
+    var oldStatus = issue.status;
     issue.status = status;
-    GithubFacade.changeIssueLabel(issue, status).then(function() {
+
+    console.log("deleta " + oldStatus)
+    console.log("adiciona" + status)
+    GithubFacade.changeIssueLabel(issue, oldStatus);
+      BoardManager.updateIssue(issue);
       socket.emit('change:issue', issue);
-    });
-  }
+  };
 
 });
