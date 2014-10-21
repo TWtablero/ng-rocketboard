@@ -1,21 +1,19 @@
 var app = angular.module('rockboardApp');
 
-app.factory('GithubFacade', function(GithubRepository, socket, LoginService, $http) {
+app.factory('GithubFacade', function(GithubRepository, LoginService, $http) {
 
   return {
 
     changeIssueLabel: function(issue, label) {
       return GithubRepository.removeLabelFromIssue(issue, issue.status).then(function() {
-        issue.status = label;
-        return GithubRepository.addLabelOnIssue(issue, label).then(function(label) {
-          issue.labels = label.data;
-          socket.socket.emit('change:issue', issue);
+        return GithubRepository.addLabelOnIssue(issue, label).then(function(res) {
+          issue.labels = res.data;
+          return res;
         });
       });
     },
 
     addIssueLabel: function(issue, label) {
-      issue.status = label;
       return GithubRepository.addLabelOnIssue(issue, label);
     },
 

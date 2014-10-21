@@ -12,11 +12,5 @@ angular.module('rockboardApp').factory('socket', function(socketFactory) {
 
   socket.forward('issue:changed');
 
-  return {
-    socket: socket,
-
-    unsyncIssues: function(modelName) {
-      socket.removeAllListeners('issue:changed');
-    }
-  };
+  return socket;
 });

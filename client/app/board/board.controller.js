@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rockboardApp').controller('BoardController', function($rootScope, socket, $scope, BoardManager) {
+angular.module('rockboardApp').controller('BoardController', function($rootScope, socket, $scope, IssueManager, BoardManager) {
   var that = this;
 
   $scope.board = BoardManager.getBoard();
@@ -17,12 +17,10 @@ angular.module('rockboardApp').controller('BoardController', function($rootScope
   $scope.boardSortOptions = {
     containment: '#board',
     itemMoved: function(event) {
-      var issue = event.source.itemScope.modelValue;
+      var issue = event.source.itemScope.issue;
       var column = event.dest.sortableScope.$parent.column;
-      GithubFacade.changeIssueLabel(issue, column.label);
-    },
-
-    orderChanged: function(event) {}
+      IssueManager.changeIssueStatus(issue, column.label);
+    }
   };
 
 });
