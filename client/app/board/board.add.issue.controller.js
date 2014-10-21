@@ -15,8 +15,8 @@ angular.module('rockboardApp').controller('BoardAddIssueController', function($m
   $scope.addToBoard = function() {
     _.forEach($scope.multipleOptions.selectedIssues, function(issue) {
       GithubFacade.addIssueLabel(issue, $scope.board.columns[0].label).then(function() {
-        BoardManipulator.removeIssueWithoutStatus($scope.board, issue);
-        BoardManipulator.addIssueToColumn($scope.board, issue);
+        BoardManipulator.removeIssueWithoutStatus(issue);
+        BoardManipulator.addIssueToColumn(issue);
       });
     });
     $scope.multipleOptions.selectedIssues.splice(0);

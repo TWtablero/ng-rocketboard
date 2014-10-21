@@ -9,7 +9,7 @@ app.factory('GithubFacade', function(GithubRepository, socket, LoginService, $ht
         issue.status = label;
         return GithubRepository.addLabelOnIssue(issue, label).then(function(label) {
           issue.labels = label.data;
-          socket.socket.emit('change:issue', _.omit(issue, "repository"));
+          socket.socket.emit('change:issue', issue);
         });
       });
     },

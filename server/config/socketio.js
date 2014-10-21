@@ -10,14 +10,14 @@ var config = require('./environment');
 function onDisconnect(socket) {}
 
 // When the user connects.. perform this
-function onConnect(socket, socketio) {
+function onConnect(socket) {
   // When the client emits 'info', this listens and executes
   socket.on('info', function(data) {
     console.info('[%s] %s', socket.address, JSON.stringify(data, null, 2));
   });
 
   // Insert sockets below
-  require('../api/issue/issue.socket').register(socket, socketio);
+  require('../api/issue/issue.socket').register(socket);
 }
 
 module.exports = function(socketio) {
@@ -50,7 +50,7 @@ module.exports = function(socketio) {
     });
 
     // Call onConnect.
-    onConnect(socket, socketio);
+    onConnect(socket);
     console.info('[%s] CONNECTED', socket.address);
   });
 };

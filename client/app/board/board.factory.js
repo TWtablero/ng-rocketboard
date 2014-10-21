@@ -29,6 +29,11 @@ app.service('BoardFactory', ['BoardManipulator', function(BoardManipulator) {
     createSpringBoard: function() {
       var board = new Board(that.springBoard.name, that.springBoard.numberOfColumns);
       BoardManipulator.setBoard(board);
+
+      _.forEach(that.springBoard.columns, function(column) {
+        BoardManipulator.addColumn(column.name, column.label);
+      });
+      
       return BoardManipulator.getBoard();
     },
   }
