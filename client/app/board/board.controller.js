@@ -3,6 +3,8 @@
 angular.module('rockboardApp').controller('BoardController', function($rootScope, socket, $scope, BoardFactory, GithubFacade, BoardManipulator, BoardManager) {
 
   $scope.board = BoardFactory.createSpringBoard();
+
+  // That's why I hate ui-select
   $scope.multipleOptions = {};
   $scope.multipleOptions.selectedRepositories = [];
   $scope.multipleOptions.selectedIssues = [];

@@ -1,6 +1,6 @@
 var app = angular.module("rockboardApp");
 
-app.factory('BoardManipulator', function(socket, ColorPicker) {
+app.service('BoardManipulator', function(socket, ColorPicker) {
   var that = this;
   that.repositories = [];
 
@@ -8,8 +8,12 @@ app.factory('BoardManipulator', function(socket, ColorPicker) {
     issue = res.issue;
   });
 
-  that.addIssueToColumn = function(board, issue) {
-    _.forEach(board.columns, function(col) {
+  this.getBoard = function() {
+    return that.board;
+  };
+
+  this.addIssueToColumn = function(issue) {
+    _.forEach(that.getBoard().columns, function(col) {
       if (issue.status == col.label || _.contains(_.pluck(issue.labels, "name"), col.label)) {
         issue.status = col.label;
         col.issues.push(issue);
@@ -17,59 +21,53 @@ app.factory('BoardManipulator', function(socket, ColorPicker) {
     });
 
     if (!issue.status)
-      board.withoutStatusIssues.push(issue);
+      that.getBoard().withoutStatusIssues.push(issue);
   };
 
-  this.addIssues = function(board, repository) {
+  this.addIssues = function(repository) {
     _.forEach(repository.issues, function(issue) {
       issue.repository = repository;
-      that.addIssueToColumn(board, issue);
+      that.addIssueToColumn(that.getBoard(), issue);
     });
   };
 
-  this.removeIssueFromColumn = function(board, column, issue) {
-    console.log("remove", issue);
-    _.forEach(board.columns, function(col) {
+  this.removeIssueFromColumn = function(column, issue) {
+    _.forEach(that.getBoard().columns, function(col) {
       if (col.name === column.name) {
         col.issues.splice(col.issues.indexOf(issue), 1);
       }
     });
   };
 
-  this.removeIssueWithoutStatus = function(board, issue) {
-    board.withoutStatusIssues.splice(board.withoutStatusIssues.indexOf(issue), 1);
+  this.removeIssueWithoutStatus = function(issue) {
+    that.getBoard().withoutStatusIssues.splice(that.getBoard().withoutStatusIssues.indexOf(issue), 1);
   };
 
   // Not proud of this either
-  this.cleanBoard = function(board, repositories) {
-    _.forEach(board.columns, function(col) {
+  this.cleanBoard = function(repositories) {
+    _.forEach(that.getBoard().columns, function(col) {
       col.issues.splice(0);
     });
-    board.repositories.splice(0);
-    board.withoutStatusIssues.splice(0);
+    that.getBoard().repositories.splice(0);
+    that.getBoard().withoutStatusIssues.splice(0);
   };
 
-  return {
-    addColumn: function(board, columnName, columnTag) {
-      board.columns.push(new Column(columnName, columnTag));
-    },
-
-    addIssueToColumn: that.addIssueToColumn,
-
-    removeIssueFromColumn: this.removeIssueFromColumn,
-
-    addIssues: that.addIssues,
-
-    removeIssueWithoutStatus: that.removeIssueWithoutStatus,
-
-    cleanBoard: that.cleanBoard,
-
-    addRepository: function(board, repository) {
-      if (!repository.color)
-        repository.color = ColorPicker.getNextColor();
-      board.repositories.push(repository);
-      that.addIssues(board, repository);
-    }
-
+  this.addColumn = function(columnName, columnTag) {
+    that.getBoard().columns.push(new Column(columnName, columnTag));
   };
+
+  this.addRepository = function(board, repository) {
+    if (!repository.color)
+      repository.color = ColorPicker.getNextColor();
+    board.repositories.push(repository);
+    that.addIssues(board, repository);
+  };
+
+  this.setBoard = function(board) {
+    that.board = board;
+    _.forEach(that.board.columns, function(column) {
+      that.addColumn(column.name, column.label);
+    });
+  };
+
 });
