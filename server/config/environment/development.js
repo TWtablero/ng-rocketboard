@@ -9,12 +9,15 @@ module.exports = {
   },
 
   repositories: [{
+    id: "1",
     username: "marcioviegas",
     name: "rocketboard-1"
   }, {
+    id: "2",
     username: "marcioviegas",
     name: "rocketboard-2"
   }, {
+    id: "3",
     username: "marcioviegas",
     name: "rocketboard-3"
   }],

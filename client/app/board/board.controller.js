@@ -1,33 +1,17 @@
 'use strict';
 
-angular.module('rockboardApp').controller('BoardController', function($rootScope, socket, $scope, BoardFactory, GithubFacade, BoardManipulator, BoardManager) {
+angular.module('rockboardApp').controller('BoardController', function($rootScope, socket, $scope, BoardManager) {
   var that = this;
 
-  $scope.board = BoardFactory.createSpringBoard();
+  $scope.board = BoardManager.getBoard();
 
   // That's why I hate ui-select
   $scope.multipleOptions = {};
   $scope.multipleOptions.selectedRepositories = [];
   $scope.multipleOptions.selectedIssues = [];
 
-  GithubFacade.fetchRepositories().then(function(res) {
-    $scope.repositories = res.data;
-  });
-
   $scope.$watch("multipleOptions.selectedRepositories", function() {
-    //TODO: Please, change this!
-    BoardManipulator.cleanBoard($scope.board, $scope.multipleOptions.selectedRepositories);
-    _.forEach($scope.multipleOptions.selectedRepositories, function(repository) {
-      if (!repository.issues)
-        GithubFacade.getIssuesFromRepository(repository).then(function(issues) {
-          repository.issues = issues.data;
-          BoardManipulator.addRepository(repository);
-        });
-      else {
-        BoardManipulator.addRepository(repository);
-      }
-    });
-
+    BoardManager.changeRepositories($scope.multipleOptions.selectedRepositories);
   });
 
   $scope.boardSortOptions = {

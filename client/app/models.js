@@ -4,15 +4,15 @@ function Board(name, numberOfColumns) {
     numberOfColumns: numberOfColumns,
     columns: [],
     withoutStatusIssues: [],
-    repositories: []
+    repositories: [],
+    issues: []
   }
 }
 
 function Column(name, label) {
   return {
     label: label,
-    name: name,
-    issues: []
+    name: name
   };
 }
 

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rockboardApp').controller('BoardAddIssueController', function($modal, $scope, BoardManipulator, GithubFacade) {
+angular.module('rockboardApp').controller('BoardAddIssueController', function($modal, $scope, GithubFacade) {
   var that = this;
 
   this.boardIssueModal = $modal({
@@ -15,8 +15,6 @@ angular.module('rockboardApp').controller('BoardAddIssueController', function($m
   $scope.addToBoard = function() {
     _.forEach($scope.multipleOptions.selectedIssues, function(issue) {
       GithubFacade.addIssueLabel(issue, $scope.board.columns[0].label).then(function() {
-        BoardManipulator.removeIssueWithoutStatus(issue);
-        BoardManipulator.addIssueToColumn(issue);
       });
     });
     $scope.multipleOptions.selectedIssues.splice(0);
