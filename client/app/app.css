@@ -115,6 +115,14 @@ footer {
     background-color: rgba(0, 0, 0, .15);
     -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .15);
 }
+
+.column-body{
+    min-height: 500px;
+}
+
+.issue-list{
+    min-height:100px;
+}
 .issue a {
     color: black;
 }
