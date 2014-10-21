@@ -1,5 +1,4 @@
-
-var app = angular.module('rockboardApp', ['ngCookies', 'mgcrea.ngStrap', 'ngResource', 'ui.select', 'ngSanitize', 'ngRoute', 'ui.sortable', 'oauth'])
+var app = angular.module('rockboardApp', ['ngCookies', 'btford.socket-io', 'mgcrea.ngStrap', 'ngResource', 'ui.select', 'ngSanitize', 'ngRoute', 'ui.sortable', 'oauth'])
 
 app.config(function($httpProvider, $routeProvider, $locationProvider, $httpProvider) {
 
@@ -7,6 +6,11 @@ app.config(function($httpProvider, $routeProvider, $locationProvider, $httpProvi
     .when('/home', {
       templateUrl: 'app/board/board.html',
       controller: 'BoardController'
+    });
+
+  $routeProvider
+    .when('/', {
+      redirectTo: '/home'
     });
 
   $routeProvider.otherwise({

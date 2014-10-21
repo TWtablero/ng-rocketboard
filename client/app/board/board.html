@@ -14,7 +14,7 @@
         </ui-select>
       </div>
       <div class="col-xs-3">
-         <button class="btn btn-default pull-right add-issues">Criar issue</button>
+         <button class="btn btn-default pull-right add-issues" ng-click="click()">Criar issue {{mexi}}</button>
          <input type="text" class="issue-search pull-right" ng-model="issueSearch.number" placeholder="Search"></input>
          <i class="fa fa-ban fa-fw pull-right" style="color:white" ng-show="issueSearch.number" ng-click="issueSearch.number = ''"></i>
       </div>
@@ -23,6 +23,7 @@
 </nav>
 <div class="container">
   <div class="row page-header" ng-model="allIssues">
+  {{title}}
     <div id="columns" class="row">
       <div class="col-sm-{{12/board.numberOfColumns}} col-xs-{{12/board.numberOfColumns}}" ng-repeat="column in board.columns" data-columnindex="{{$index}}" id="column{{$index}}">
         <div class="column">

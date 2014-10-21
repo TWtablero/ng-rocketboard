@@ -26,7 +26,7 @@ app.factory("LoginService", function($q, $http) {
         return promise.promise;
       }
 
-      return $http.get("/api/access");
+      return $http.get("/api/login/token");
 
     }
   }

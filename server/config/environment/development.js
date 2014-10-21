@@ -11,13 +11,17 @@ module.exports = {
   repositories: [{
     username: "marcioviegas",
     name: "rocketboard-1"
-  },{
+  }, {
     username: "marcioviegas",
     name: "rocketboard-2"
-  },{
+  }, {
     username: "marcioviegas",
     name: "rocketboard-3"
   }],
+  
+  clientId: "c8e53a399aaaf4423852",
+
+  sectretId: "cf21bef34d5efa99fb4b8894017b9cf6c263b8a3",
 
   // repositories: [{
   //   username: "pixelated-project",

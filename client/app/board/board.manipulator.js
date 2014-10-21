@@ -1,8 +1,12 @@
 var app = angular.module("rockboardApp");
 
-app.factory('BoardManipulator', function(ColorPicker) {
+app.factory('BoardManipulator', function(socket, ColorPicker) {
   var that = this;
   that.repositories = [];
+
+  socket.socket.on('issue:changed', function(res) {
+    issue = res.issue;
+  });
 
   that.addIssueToColumn = function(board, issue) {
     _.forEach(board.columns, function(col) {
@@ -24,6 +28,7 @@ app.factory('BoardManipulator', function(ColorPicker) {
   };
 
   this.removeIssueFromColumn = function(board, column, issue) {
+    console.log("remove", issue);
     _.forEach(board.columns, function(col) {
       if (col.name === column.name) {
         col.issues.splice(col.issues.indexOf(issue), 1);
@@ -60,8 +65,8 @@ app.factory('BoardManipulator', function(ColorPicker) {
     cleanBoard: that.cleanBoard,
 
     addRepository: function(board, repository) {
-      if(!repository.color)
-      repository.color = ColorPicker.getNextColor();
+      if (!repository.color)
+        repository.color = ColorPicker.getNextColor();
       board.repositories.push(repository);
       that.addIssues(board, repository);
     }

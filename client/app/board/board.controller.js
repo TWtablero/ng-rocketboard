@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rockboardApp').controller('BoardController', function($rootScope, $scope, BoardFactory, GithubFacade, BoardManipulator, BoardManager) {
+angular.module('rockboardApp').controller('BoardController', function($rootScope, socket, $scope, BoardFactory, GithubFacade, BoardManipulator, BoardManager) {
 
   $scope.board = BoardFactory.createSpringBoard();
   $scope.multipleOptions = {};
@@ -19,9 +19,10 @@ angular.module('rockboardApp').controller('BoardController', function($rootScope
         GithubFacade.getIssuesFromRepository(repository).then(function(issues) {
           repository.issues = issues.data
           BoardManipulator.addRepository($scope.board, repository);
+          //TODO: one function to rule then all
           $("span:contains('" + repository.name + "')").closest(".ui-select-match-item").css("background", repository.color);
         });
-      else{
+      else {
         BoardManipulator.addRepository($scope.board, repository);
         $("span:contains('" + repository.name + "')").closest(".ui-select-match-item").css("background", repository.color);
       }
