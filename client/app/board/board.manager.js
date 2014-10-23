@@ -1,18 +1,27 @@
 var app = angular.module("rockboardApp");
 
-app.service('BoardManager', function(GithubFacade, BoardFactory) {
+app.service('BoardManager', function(IssueManager, Socket, BoardFactory) {
   var that = this;
 
-  this.board = BoardFactory.getSprintBoard();
+  Socket.on("issue:changed", function(res) {
+    that.updateIssue(res.issue);
+  });
 
-  this.updateIssue = function(issue) {
+  this.updateIssue = function(issue, status) {
 
     if (this.getRepository(issue.repository.id)) {
 
-      this.getRepository(issue.repository.id).issues[_.findIndex(this.getRepository(issue.repository.id).issues, {
+      var issueReference = this.getRepository(issue.repository.id).issues[_.findIndex(this.getRepository(issue.repository.id).issues, {
         id: issue.id
-      })] = issue;
+      })];
 
+      // Need to 
+      issue.repository.color = issueReference.repository.color;
+
+      //Update issue on repository
+      issueReference = issue;
+
+      // If exist update issue on board
       if (_.findIndex(that.board.issues, {
           id: issue.id
         }) > -1) {
@@ -26,20 +35,17 @@ app.service('BoardManager', function(GithubFacade, BoardFactory) {
     }
   };
 
+  this.makeBoard = function(repositories) {
+    that.board = BoardFactory.makeBoard(repositories);
+    return that.board;
+  };
+
   this.addRepository = function(repository) {
     var repository = that.getRepository(repository.id);
-
-    if (!repository.issues) {
-      GithubFacade.getIssuesFromRepository(repository).then(function(issues) {
-        repository.issues = issues.data;
-        that.addIssues(repository);
-      });
-    } else {
-      that.addIssues(repository);
-    }
+    that.addIssues(repository);
 
     //Not proud
-    $("span:contains('" + repository.name + "')").closest(".ui-select-match-item").css("background", repository.color);
+    $("span").filter(function(){ return $(this).text() == repository.name  }).closest(".ui-select-match-item").css("background", repository.color);
   };
 
   this.changeRepositories = function(repositories) {
@@ -59,8 +65,8 @@ app.service('BoardManager', function(GithubFacade, BoardFactory) {
     _.forEach(repository.issues, function(issue) {
       var status = null;
       _.forEach(that.board.columns, function(col) {
-        if (_.contains(_.pluck(issue.labels, "name"), col.label)) {
-          status = col.label;
+        if (_.contains(_.pluck(issue.labels, "name"), col.status)) {
+          status = col.status;
         }
       });
       issue.repository = _.omit(repository, "issues");

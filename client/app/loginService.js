@@ -2,6 +2,7 @@ var app = angular.module("rockboardApp");
 
 app.factory("LoginService", function($q, $http) {
   var that = this;
+
   that.access_token = null;
 
   return {
@@ -11,7 +12,7 @@ app.factory("LoginService", function($q, $http) {
     },
 
     getToken: function(){
-    	return that.access_token
+      return that.access_token
     },
 
     logOut: function(access_token) {
@@ -19,15 +20,7 @@ app.factory("LoginService", function($q, $http) {
     },
 
     isLoggedIn: function() {
-      var promise = $q.defer();
-
-      if (that.access_token) {
-        promise.resolve(true);
-        return promise.promise;
-      }
-
-      return $http.get("/api/login/token");
-
+      return that.access_token;
     }
   }
 

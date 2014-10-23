@@ -3,18 +3,14 @@ var app = angular.module('rockboardApp', ['ngCookies', 'btford.socket-io', 'mgcr
 app.config(function($httpProvider, $routeProvider, $locationProvider, $httpProvider) {
 
   $routeProvider
-    .when('/home', {
-      templateUrl: 'app/board/board.html',
-      controller: 'BoardController'
-    });
-
-  $routeProvider
     .when('/', {
-      redirectTo: '/home'
+      templateUrl: 'app/board/board.html',
+      controller: 'BoardController',
+      requireLogin: true
     });
 
   $routeProvider.otherwise({
-    redirectTo: '/home'
+    redirectTo: '/'
   });
 
   $locationProvider.html5Mode(true);
@@ -23,15 +19,13 @@ app.config(function($httpProvider, $routeProvider, $locationProvider, $httpProvi
 
   $rootScope.$on("$routeChangeStart", function(event, next, current) {
 
-    LoginService.isLoggedIn().then(function(loggedIn) {
+    if(next.params.access_token){
+      LoginService.login(next.params.access_token);
+      $location.url($location.path());
+    }
 
-      if (loggedIn.data) {
-        LoginService.login(loggedIn.data);
-      } else {
-        window.location = 'https://github.com/login/oauth/authorize/?client_id=c8e53a399aaaf4423852&scope=public_repo';
-      }
-
-    });
+    if (next.requireLogin && !LoginService.isLoggedIn())
+      window.location = 'http://github.com/login/oauth/authorize?client_id=c8e53a399aaaf4423852';
 
   });
 

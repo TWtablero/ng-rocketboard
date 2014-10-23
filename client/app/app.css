@@ -22,7 +22,6 @@
  * App-wide Styles
  */
 
-
 *:focus, *:hover {
     outline: 0 !important;
 }
@@ -46,9 +45,9 @@
 .ui-select-multiple input {
     text-align: center;
 }
-.repositories input{
-    font-size:16px;
-    margin-top:3px;
+.repositories input {
+    font-size: 16px;
+    margin-top: 3px;
 }
 .navbar .add-issues {
     margin-top: 4px;
@@ -115,13 +114,11 @@ footer {
     background-color: rgba(0, 0, 0, .15);
     -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .15);
 }
-
-.column-body{
-    min-height: 500px;
+.column-body {
+    min-height: 300px;
 }
-
-.issue-list{
-    min-height:100px;
+.issue-list {
+    min-height: 100px;
 }
 .issue a {
     color: black;
@@ -148,8 +145,13 @@ footer {
 .issue-number a {
     color: white !important;
 }
-.issue-assigned {
+.issue-not-assigned {
     padding: 10px;
+}
+.issue-assigned {
+    padding: 0px;
+}
+.issue-assigned img {
 }
 .column-header .fa-plus-square {
     cursor: pointer;
@@ -171,4 +173,7 @@ footer {
     cursor: pointer;
     z-index: 1000 !important;
 }
-
+.issue-number:hover {
+    text-decoration: none;
+    font-weight: bold;
+}

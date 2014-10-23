@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="row">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -22,35 +22,38 @@
   </div>
 </nav>
 <div class="container">
-  <div class="row page-header" ng-model="allIssues">
+  <div class="row page-header">
   {{title}}
     <div id="columns" class="row">
       <div class="col-sm-{{12/board.numberOfColumns}} col-xs-{{12/board.numberOfColumns}}" ng-repeat="column in board.columns" data-columnindex="{{$index}}" id="column{{$index}}">
         <div class="column">
           <div class="column-header">
             <i class="fa fa-plus-square" ng-show="$index == 0 && board.withoutStatusIssues.length > 0" ng-controller="BoardAddIssueController" ng-click="showModal()"></i>
-            <span>{{column.name}} ({{(board.issues | statusFilter:column.label | filter:issueSearch).length}})</span>
+            <span>{{column.name}} ({{(board.issues | statusFilter:column.status | filter:issueSearch).length}})</span>
           </div>
           <div class="column-body">
-            <div class="issues issue-list" as-sortable="boardSortOptions" ng-model="column.issues">
-              <li ng-repeat="issue in board.issues | statusFilter:column.label | filter:issueSearch" as-sortable-item>
+            <ul class="issues issue-list" as-sortable="boardSortOptions" ng-model="board.issues" id="board">
+              <li ng-repeat="issue in board.issues | statusFilter:column.status | filter:issueSearch" as-sortable-item>
                 <div as-sortable-item-handle class="issue">
                   <div class="issue-header">
                     <div target="_blank" class="issue-number pull-right" style="background-color:{{issue.repository.color}}">
-                      <a href="{{issue.html_url}}" target="_blank" class="issue-number right">#{{issue.number}}</a>
+                      <a data-no-drag  href="{{issue.html_url}}" target="_blank" class="issue-number right">#{{issue.number}}</a>
                     </div>
-                    <div class="issue-assigned">
-                      <a class="assigns-myself">
+                    <div class="issue-not-assigned" ng-hide="{{issue.assignee}}">
+                      <a data-no-drag class="assigns-myself">
                         <span class="btn btn-default btn-xs"><i class="fa fa-user"></i> ASSIGN ME</span>
                       </a>
                     </div>
+                    <div class="issue-assigned" ng-show="{{issue.assignee}}">
+                      <img src="{{issue.assignee.avatar_url}}" width="42px" />
+                    </div>
                   </div>
-                  <div class="issue-body"><a class="title list-group-item-heading" href="" target="_blank">{{issue.title}}</a>
+                  <div class="issue-body"><span class="title list-group-item-heading" href="" target="_blank">{{issue.title}}</span>
                   </div>
                   <div class="labels"></div>
                 </div>
               </li>
-            </div>
+            </ul>
           </div>
         </div>
       </div>

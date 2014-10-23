@@ -9,9 +9,9 @@ function Board(name, numberOfColumns) {
   }
 }
 
-function Column(name, label) {
+function Column(name, status) {
   return {
-    label: label,
+    status: status,
     name: name
   };
 }

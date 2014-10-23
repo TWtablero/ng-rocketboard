@@ -1,21 +1,26 @@
 var app = angular.module("rockboardApp");
 
-app.service('IssueManager', function(GithubFacade, BoardFactory, socket, BoardManager) {
+app.service('IssueManager', function(GithubRepository, Socket) {
   var that = this;
 
-  socket.on("issue:changed", function(res) {
-    BoardManager.updateIssue(res.issue);
-  });
-
-  this.changeIssueStatus = function(issue, status) {
+  this.changeStatus = function(issue, status) {
     var oldStatus = issue.status;
     issue.status = status;
-    BoardManager.updateIssue(issue);
 
-    GithubFacade.changeIssueLabel(issue, oldStatus).then(function() {
-      socket.emit('change:issue', issue);
+    return GithubRepository.removeLabelFromIssue(issue, oldStatus).then(function() {
+      return GithubRepository.addLabelOnIssue(issue, issue.status).then(function(res) {
+        issue.labels = res.data;
+        Socket.emit('change:issue', issue);
+      });
     });
+  };
 
+  this.addLabel = function(issue, label) {
+    return GithubRepository.addLabelOnIssue(issue, label);
+  };
+
+  this.getListFromRepository = function(repository) {
+    return GithubRepository.getIssuesFromRepository(repository);
   };
 
 });
