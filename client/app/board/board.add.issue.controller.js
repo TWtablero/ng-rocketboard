@@ -14,7 +14,7 @@ angular.module('rockboardApp').controller('BoardAddIssueController', function($m
 
   $scope.addToBoard = function() {
     _.forEach($scope.multipleOptions.selectedIssues, function(issue) {
-      IssueManager.addLabel(issue, $scope.board.columns[0].label).then(function() {});
+      IssueManager.changeStatus(issue, $scope.board.columns[0].status).then(function() {});
     });
     $scope.multipleOptions.selectedIssues.splice(0);
     that.boardIssueModal.$promise.then(that.boardIssueModal.hide);

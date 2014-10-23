@@ -3,9 +3,9 @@
     <div class="row">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="col-xs-3">
-        <img class="logo" src="../assets/images/rocketboard.png">
+        <img class="logo" src="../assets/images/rocketboard.png" ng-click="test()">
       </div>
-      <div class="col-sm-6 repositories">
+      <div class="col-sm-7 repositories">
         <ui-select multiple ng-model="multipleOptions.selectedRepositories" theme="bootstrap">
           <ui-select-match placeholder="Click here to select repositories">{{$item.name}}</ui-select-match>
           <ui-select-choices repeat="repository in board.repositories | filter: $select.search">
@@ -13,8 +13,7 @@
           </ui-select-choices>
         </ui-select>
       </div>
-      <div class="col-xs-3">
-         <button class="btn btn-default pull-right add-issues">Criar issue {{mexi}}</button>
+      <div class="col-xs-2">
          <input type="text" class="issue-search pull-right" ng-model="issueSearch.number" placeholder="Search"></input>
          <i class="fa fa-ban fa-fw pull-right" style="color:white" ng-show="issueSearch.number" ng-click="issueSearch.number = ''"></i>
       </div>
@@ -25,10 +24,10 @@
   <div class="row page-header">
   {{title}}
     <div id="columns" class="row">
-      <div class="col-sm-{{12/board.numberOfColumns}} col-xs-{{12/board.numberOfColumns}}" ng-repeat="column in board.columns" data-columnindex="{{$index}}" id="column{{$index}}">
+      <div class="col-sm-{{12/board.columns.length}} col-xs-{{12/board.columns.length}}" ng-repeat="column in board.columns" data-columnindex="{{$index}}" id="column{{$index}}">
         <div class="column">
           <div class="column-header">
-            <i class="fa fa-plus-square" ng-show="$index == 0 && board.withoutStatusIssues.length > 0" ng-controller="BoardAddIssueController" ng-click="showModal()"></i>
+            <i class="fa fa-plus-square" ng-show="$index == 0 && (board.issues | statusFilter:'nostatus').length > 0" ng-controller="BoardAddIssueController" ng-click="showModal()"></i>
             <span>{{column.name}} ({{(board.issues | statusFilter:column.status | filter:issueSearch).length}})</span>
           </div>
           <div class="column-body">

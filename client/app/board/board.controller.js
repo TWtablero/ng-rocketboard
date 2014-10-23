@@ -12,6 +12,10 @@ angular.module('rockboardApp').controller('BoardController', function(Socket, $s
     $scope.board = BoardManager.makeBoard(res.data);
   });
 
+  $scope.test = function(){
+    $scope.board.columns.splice(0,1);
+  }
+
   $scope.$watch("multipleOptions.selectedRepositories", function(newValue, oldValue) {
     if($scope.board)
       RepositoryManager.getRepositoriesIssues($scope.multipleOptions.selectedRepositories).then(function() {

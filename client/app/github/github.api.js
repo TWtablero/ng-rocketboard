@@ -28,7 +28,6 @@ app.factory('GithubApi', function(LoginService) {
     },
 
     userRepositoriesUrl: function(){
-      console.log(that.url + that.appendToken("/user/repos"));
       return that.appendToken(that.url + "/user/repos");
     }
 

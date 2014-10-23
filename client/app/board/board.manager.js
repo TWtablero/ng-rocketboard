@@ -70,7 +70,7 @@ app.service('BoardManager', function(IssueManager, Socket, BoardFactory) {
         }
       });
       issue.repository = _.omit(repository, "issues");
-      issue.status = status;
+      issue.status = status || "nostatus";
       that.board.issues.push(issue);
     });
   };
