@@ -8,15 +8,15 @@ app.service('IssueManager', function(GithubRepository, Socket) {
     issue.status = status;
 
     return GithubRepository.removeLabelFromIssue(issue, oldStatus).then(function() {
-      return GithubRepository.addLabelOnIssue(issue, issue.status).then(function(res) {
-        issue.labels = res.data;
-        Socket.emit('change:issue', issue);
-      });
+      return that.addLabel(issue, issue.status);
     });
   };
 
   this.addLabel = function(issue, label) {
-    return GithubRepository.addLabelOnIssue(issue, label);
+    return GithubRepository.addLabelOnIssue(issue, label).then(function(res) {
+        issue.labels = res.data;
+        Socket.emit('change:issue', issue);
+      });
   };
 
   this.getListFromRepository = function(repository) {

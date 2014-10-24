@@ -7,32 +7,52 @@ app.service('BoardManager', function(IssueManager, Socket, BoardFactory) {
     that.updateIssue(res.issue);
   });
 
-  this.updateIssue = function(issue, status) {
+  this.updateIssue = function(issue) {
 
-    if (this.getRepository(issue.repository.id)) {
+    var repository = this.getRepository(issue.repository.id);
 
-      var issueReference = this.getRepository(issue.repository.id).issues[_.findIndex(this.getRepository(issue.repository.id).issues, {
-        id: issue.id
-      })];
+    if (repository.issues) {
 
-      // Need to 
+      var issueReference = repository.issues[that.findIndex(repository.issues, issue)];
+
+      //Need to maintain colors 
       issue.repository.color = issueReference.repository.color;
 
       //Update issue on repository
-      issueReference = issue;
+      this.getRepository(issue.repository.id).issues[that.findIndex(repository.issues, issue)] = issue;
 
-      // If exist update issue on board
-      if (_.findIndex(that.board.issues, {
-          id: issue.id
-        }) > -1) {
+      if (that.onBoard(issue) && that.isShowingRepository(repository)) {
 
         this.board.issues[_.findIndex(that.board.issues, {
           id: issue.id
         })] = issue;
 
-      }
+        console.log(that.board.issues);
 
+      } else if (that.isShowingRepository(repository)) {
+        that.addIssue(issue);
+        console.log("adicionou issue porque repo ta mostrando")
+      }
     }
+    console.log(that.board.repositoriesAdded);
+  };
+
+  this.isShowingRepository = function(repository) {
+    return _.find(that.board.repositoriesAdded, {
+      id: repository.id
+    });
+  };
+
+  this.findIndex = function(colection, object) {
+    return _.findIndex(colection, {
+      id: object.id
+    });
+  }
+
+  this.onBoard = function(issue) {
+    return _.findIndex(that.board.issues, {
+          id: issue.id
+        }) > -1;
   };
 
   this.makeBoard = function(repositories) {
@@ -42,15 +62,19 @@ app.service('BoardManager', function(IssueManager, Socket, BoardFactory) {
 
   this.addRepository = function(repository) {
     var repository = that.getRepository(repository.id);
+    that.board.repositoriesAdded.push(repository);
     that.addIssues(repository);
 
     //Not proud
-    $("span").filter(function(){ return $(this).text() == repository.name  }).closest(".ui-select-match-item").css("background", repository.color);
+    $("span").filter(function() {
+      return $(this).text() == repository.name
+    }).closest(".ui-select-match-item").css("background", repository.color);
   };
 
   this.changeRepositories = function(repositories) {
     // I know, you know, we all know.
     that.board.issues.splice(0);
+    that.board.repositoriesAdded.splice(0);
     _.forEach(repositories, that.addRepository);
   };
 
@@ -61,18 +85,21 @@ app.service('BoardManager', function(IssueManager, Socket, BoardFactory) {
   };
 
   this.addIssues = function(repository) {
-
     _.forEach(repository.issues, function(issue) {
-      var status = null;
-      _.forEach(that.board.columns, function(col) {
-        if (_.contains(_.pluck(issue.labels, "name"), col.status)) {
-          status = col.status;
-        }
-      });
-      issue.repository = _.omit(repository, "issues");
-      issue.status = status || "nostatus";
-      that.board.issues.push(issue);
+      that.addIssue(repository, issue);
     });
+  };
+
+  this.addIssue = function(repository, issue) {
+    var status = null;
+    _.forEach(that.board.columns, function(col) {
+      if (_.contains(_.pluck(issue.labels, "name"), col.status)) {
+        status = col.status;
+      }
+    });
+    issue.repository = _.omit(repository, "issues");
+    issue.status = status || "nostatus";
+    that.board.issues.push(issue);
   };
 
   this.setBoard = function() {

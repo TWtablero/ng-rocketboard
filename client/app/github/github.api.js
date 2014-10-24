@@ -7,19 +7,19 @@ app.factory('GithubApi', function(LoginService) {
 
   this.appendToken = function(url) {
     //TODO: I'm sorry about this response_id to remove cache. 
-    return url + "?per_page=100&response_id=" + Math.random().toString(36).substring(7) + "&access_token=" + LoginService.getToken();
+    return url + "?per_page=100&response_id=" + Math.random().toString(36).substring(7);
   };
 
   return {
 
     addLabelUrl: function(issue) {
       var addLabelUrl = issue.url + "/labels"
-      return that.appendToken(addLabelUrl);
+      return addLabelUrl;
     },
 
     removeLabelUrl: function(issue, label) {
       var removeLabelUrl = issue.url + "/labels/" + label;
-      return that.appendToken(removeLabelUrl);
+      return removeLabelUrl;
     },
 
     issuesUrl: function(repository) {

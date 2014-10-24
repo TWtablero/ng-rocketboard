@@ -5,6 +5,7 @@ function Board(name, numberOfColumns) {
     columns: [],
     withoutStatusIssues: [],
     repositories: [],
+    repositoriesAdded: [],
     issues: []
   }
 }
