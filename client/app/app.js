@@ -1,4 +1,4 @@
-var app = angular.module('rockboardApp', ['ngCookies', 'btford.socket-io', 'mgcrea.ngStrap', 'ngResource', 'ui.select', 'ngSanitize', 'ngRoute', 'ui.sortable', 'oauth'])
+var app = angular.module('rocketBoardApp', ['ngCookies', 'btford.socket-io', 'mgcrea.ngStrap', 'ngResource', 'ui.select', 'ngSanitize', 'ngRoute', 'ui.sortable', 'oauth'])
 
 app.config(function($httpProvider, $routeProvider, $locationProvider, $httpProvider) {
 
@@ -31,3 +31,6 @@ app.config(function($httpProvider, $routeProvider, $locationProvider, $httpProvi
   });
 
 });
+
+
+angular.module('rockboardApp', []);

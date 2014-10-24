@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rockboardApp').controller('BoardController', function(Socket, $scope, RepositoryManager, IssueManager, BoardManager) {
+angular.module('rocketBoardApp').controller('BoardController', function(Socket, $scope, RepositoryManager, IssueManager, BoardManager) {
   var that = this;
 
   // That's why I hate ui-select

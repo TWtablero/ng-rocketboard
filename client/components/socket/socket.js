@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rockboardApp').factory('Socket', function(socketFactory) {
+angular.module('rocketBoardApp').factory('Socket', function(socketFactory) {
 
   var ioSocket = io('', {
     path: '/socket.io-client'

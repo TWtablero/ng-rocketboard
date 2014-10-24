@@ -1,4 +1,4 @@
-var app = angular.module("rockboardApp");
+var app = angular.module("rocketBoardApp");
 
 app.service('BoardFactory', function(ColorPicker) {
   var that = this;

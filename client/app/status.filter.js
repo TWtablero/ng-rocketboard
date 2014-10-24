@@ -1,4 +1,4 @@
-var app = angular.module('rockboardApp');
+var app = angular.module('rocketBoardApp');
 
 app.filter('statusFilter', function() {
    return function( issues, status) {

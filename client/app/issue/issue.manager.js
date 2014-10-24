@@ -1,4 +1,4 @@
-var app = angular.module("rockboardApp");
+var app = angular.module("rocketBoardApp");
 
 app.service('IssueManager', function(GithubRepository, Socket) {
   var that = this;

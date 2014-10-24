@@ -1,6 +1,6 @@
 {
-  "name": "rockboard",
-  "version": "0.0.0",
+  "name": "rocketBoard",
+  "version": "0.1.0",
   "dependencies": {
     "js-base64": "latest",
     "angular": ">=1.2.*",

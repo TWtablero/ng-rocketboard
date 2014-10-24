@@ -1,4 +1,4 @@
-var app = angular.module('rockboardApp');
+var app = angular.module('rocketBoardApp');
 
 app.factory('GithubApi', function(LoginService) {
   var that = this;

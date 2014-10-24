@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rockboardApp').controller('BoardAddIssueController', function(BoardManager, $modal, $scope, IssueManager) {
+angular.module('rocketBoardApp').controller('BoardAddIssueController', function(BoardManager, $modal, $scope, IssueManager) {
   var that = this;
 
   this.boardIssueModal = $modal({
