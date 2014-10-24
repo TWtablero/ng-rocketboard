@@ -13,7 +13,8 @@ Install
 Config
 ---
 
-Create and Github OAuth Application
+Create a Github OAuth Application ([link](https://github.com/settings/applications/new))
+
 Change the client_id and secret_id on file
 
     /server/config/environment/development.js
