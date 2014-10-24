@@ -14,7 +14,9 @@ Config
 ---
 
 Create and Github OAuth Application
-Change the client_id and secret_id on file: /server/config/environment/development.js
+Change the client_id and secret_id on file
+
+    /server/config/environment/development.js
 
 
 Run
