@@ -1,4 +1,4 @@
-RocketBoard 
+Rocketboard 
 =========
 
 The original project can be found here: [@oliviagj/rocketboard](https://github.com/oliviagj/rocketboard)
