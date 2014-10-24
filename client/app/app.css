@@ -21,7 +21,6 @@
 /**
  * App-wide Styles
  */
-
 *:focus, *:hover {
     outline: 0 !important;
 }
@@ -151,9 +150,7 @@ footer {
 .issue-assigned {
     padding: 0px;
 }
-.issue-assigned img {
-}
-.column-header .fa-plus-square {
+.issue-assigned img {} .column-header .fa-plus-square {
     cursor: pointer;
 }
 .issue-search {
@@ -177,7 +174,38 @@ footer {
     text-decoration: none;
     font-weight: bold;
 }
-
-.issue-assigned img{
+.issue-assigned img {
     cursor: pointer;
+}
+/* ROCKET */
+
+.panel-done h3, .panel-done .issues-count {
+    color: #aaa;
+    display: block;
+    margin-top: 9px;
+    font-size: 13px;
+}
+.panel-done img {
+    width: 45px;
+    position: relative;
+    margin-top:200px;
+}
+
+.panel-done img.colored {
+    display: none;
+}
+.panel-done img.check-done {
+    display: none;
+}
+
+.panel-done .as-sortable-placeholder {
+    background: black;
+    height: 0 !important;
+    width: 0 !important;
+    border: 0 !important;
+}
+.panel-done{
+    text-align: center;
+    border:2px dashed #eee;
+    height: 500px;
 }

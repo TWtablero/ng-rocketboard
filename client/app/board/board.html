@@ -1,4 +1,4 @@
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="row">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -14,40 +14,60 @@
         </ui-select>
       </div>
       <div class="col-xs-2">
-         <input type="text" class="issue-search pull-right" ng-model="issueSearch.number" placeholder="Search"></input>
-         <i class="fa fa-ban fa-fw pull-right" style="color:white" ng-show="issueSearch.number" ng-click="issueSearch.number = ''"></i>
+        <input type="text" class="issue-search pull-right" ng-model="issueSearch.number" placeholder="# Search"></input>
+        <i class="fa fa-ban fa-fw pull-right" style="color:white" ng-show="issueSearch.number" ng-click="issueSearch.number = ''"></i>
       </div>
     </div>
   </div>
 </nav>
 <div class="container">
-  <div class="row page-header">
-  {{title}}
-    <div id="columns" class="row">
-      <div class="col-sm-{{12/board.columns.length}} col-xs-{{12/board.columns.length}}" ng-repeat="column in board.columns" data-columnindex="{{$index}}" id="column{{$index}}">
-        <div class="column">
-          <div class="column-header">
-            <i class="fa fa-plus-square" ng-show="$index == 0 && (board.issues | statusFilter:'nostatus').length > 0" ng-controller="BoardAddIssueController" ng-click="showModal()"></i>
-            <span>{{column.name}} ({{(board.issues | statusFilter:column.status | filter:issueSearch).length}})</span>
+  <div class="row">
+    <div class="col-sm-11 col-xs-11">
+      <div class="row page-header">
+        {{title}}
+        <div id="columns" class="row">
+          <div class="col-sm-{{12/board.columns.length}} col-xs-{{12/board.columns.length}}" ng-repeat="column in board.columns" data-columnindex="{{$index}}" id="column{{$index}}">
+            <div class="column">
+              <div class="column-header">
+                <i class="fa fa-plus-square" ng-show="$index == 0 && (board.issues | statusFilter:'nostatus').length > 0" ng-controller="BoardAddIssueController" ng-click="showModal()"></i>
+                <span>{{column.name}} ({{(board.issues | statusFilter:column.status | filter:issueSearch).length}})</span>
+              </div>
+              <div class="column-body">
+                <ul class="issues issue-list" as-sortable="boardSortOptions" ng-model="board.issues">
+                  <li ng-repeat="issue in board.issues | statusFilter:column.status | filter:issueSearch" as-sortable-item>
+                    <div as-sortable-item-handle class="issue">
+                      <div class="issue-header">
+                        <div target="_blank" class="issue-number pull-right" style="background-color:{{issue.repository.color}}">
+                          <a data-no-drag href="{{issue.html_url}}" target="_blank" class="issue-number right">#{{issue.number}}</a>
+                        </div>
+                        <div class="issue-assigned">
+                          <img bs-tooltip='tooltip' title="Assign this issue to me" data-no-drag ng-click="assignMe(issue)" src="{{issue.assignee.avatar_url ? issue.assignee.avatar_url : 'assets/images/avatar-empty.png'}}" width="42px" />
+                        </div>
+                      </div>
+                      <div class="issue-body">
+                        <span class="title list-group-item-heading" href="" target="_blank">{{issue.title}}</span>
+                      </div>
+                      <div class="labels"></div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="column-body">
-            <ul class="issues issue-list" as-sortable="boardSortOptions" ng-model="board.issues" id="board">
-              <li ng-repeat="issue in board.issues | statusFilter:column.status | filter:issueSearch" as-sortable-item>
-                <div as-sortable-item-handle class="issue">
-                  <div class="issue-header">
-                    <div target="_blank" class="issue-number pull-right" style="background-color:{{issue.repository.color}}">
-                      <a data-no-drag href="{{issue.html_url}}" target="_blank" class="issue-number right">#{{issue.number}}</a>
-                    </div>
-                    <div class="issue-assigned" ng-click="assignMe(issue)">
-                      <img data-no-drag src="{{issue.assignee.avatar_url ? issue.assignee.avatar_url : 'assets/images/avatar-empty.png'}}" width="42px" />
-                    </div>
-                  </div>
-                  <div class="issue-body"><span class="title list-group-item-heading" href="" target="_blank">{{issue.title}}</span>
-                  </div>
-                  <div class="labels"></div>
-                </div>
-              </li>
-            </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1 col-xs-1">
+      <div class="row page-header">
+        <div class="col-xs-offset-4 col-xs-8">
+          <div class="row">
+            <div class="panel-done" as-sortable="boardSortOptions" ng-model="board.issues">
+              <img class="plain" src="assets/images/rocket.svg"  ng-click="trigger()">
+              <img class="colored" src="assets/images/rocketblue.svg">
+              <img class="check-done" src="assets/images/done.svg">
+              <h3>Drop here to launch</h3>
+              <span class="issues-count">{{(board.issues).length}}</span>
+            </div>
           </div>
         </div>
       </div>
