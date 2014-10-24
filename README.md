@@ -31,4 +31,4 @@ Contributions welcome!
 
 We're always happy to accept documentation improvements, bug fixes and new features. Please fork this repo and send a pull request. Feedback, suggestions and questions are always welcome too.
 
-Licensed under MIT. Maintained by @marcioviegas. Copyright (c) 2014 ThoughtWorks, Inc.
+Licensed under MIT. Maintained by [@marcioviegas](https://github.com/marcioviegas). Copyright (c) 2014 ThoughtWorks, Inc.
