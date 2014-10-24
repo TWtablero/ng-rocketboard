@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rocketBoardApp').controller('BoardController', function(Socket, $scope, RepositoryManager, IssueManager, BoardManager) {
+angular.module('rocketBoardApp').controller('BoardController', function(Socket, UserManager, $rootScope, $scope, RepositoryManager, IssueManager, BoardManager) {
   var that = this;
 
   // That's why I hate ui-select
@@ -8,16 +8,18 @@ angular.module('rocketBoardApp').controller('BoardController', function(Socket, 
   $scope.multipleOptions.selectedRepositories = [];
   $scope.multipleOptions.selectedIssues = [];
 
+  // Put on login ?
   RepositoryManager.getList().then(function(res) {
     $scope.board = BoardManager.makeBoard(res.data);
   });
 
-  $scope.test = function(){
-    $scope.board.columns.splice(0,1);
-  }
+  $scope.assignMe = function(issue) {
+    IssueManager.assignIssueToUser(issue, $rootScope.user);
+    BoardManager.updateIssue(issue);
+  };
 
   $scope.$watch("multipleOptions.selectedRepositories", function(newValue, oldValue) {
-    if($scope.board)
+    if ($scope.board)
       RepositoryManager.getRepositoriesIssues($scope.multipleOptions.selectedRepositories).then(function() {
         BoardManager.changeRepositories($scope.multipleOptions.selectedRepositories);
       });

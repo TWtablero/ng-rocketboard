@@ -20,6 +20,8 @@ app.service('BoardManager', function(IssueManager, Socket, BoardFactory) {
 
       //Update issue on repository
       this.getRepository(issue.repository.id).issues[that.findIndex(repository.issues, issue)] = issue;
+      console.log("atualiza issue no repo");
+
 
       if (that.onBoard(issue) && that.isShowingRepository(repository)) {
 
@@ -27,7 +29,10 @@ app.service('BoardManager', function(IssueManager, Socket, BoardFactory) {
           id: issue.id
         })] = issue;
 
-        console.log(that.board.issues);
+         console.log("atualiza issue no board");
+         console.log(issue);
+
+        //console.log(that.board.issues);
 
       } else if (that.isShowingRepository(repository)) {
         that.addIssue(issue);

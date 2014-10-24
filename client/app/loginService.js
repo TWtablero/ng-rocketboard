@@ -11,7 +11,7 @@ app.factory("LoginService", function($q, $http) {
       that.access_token = access_token;
     },
 
-    getToken: function(){
+    getToken: function() {
       return that.access_token
     },
 

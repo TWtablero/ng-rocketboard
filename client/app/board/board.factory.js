@@ -36,8 +36,6 @@ app.service('BoardFactory', function(ColorPicker) {
 
       board.issues = [];
 
-      console.log(board);
-
       return board;
     },
   }

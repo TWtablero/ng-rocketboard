@@ -5,7 +5,7 @@ app.factory('GithubApi', function(LoginService) {
 
   this.url = "https://api.github.com";
 
-  this.appendToken = function(url) {
+  this.appendPerPage = function(url) {
     //TODO: I'm sorry about this response_id to remove cache. 
     return url + "?per_page=100&response_id=" + Math.random().toString(36).substring(7);
   };
@@ -24,11 +24,19 @@ app.factory('GithubApi', function(LoginService) {
 
     issuesUrl: function(repository) {
       var issuesUrl = that.url + "/repos/" + repository.owner.login + "/" + repository.name + "/issues";
-      return that.appendToken(issuesUrl);
+      return that.appendPerPage(issuesUrl);
     },
 
     userRepositoriesUrl: function(){
-      return that.appendToken(that.url + "/user/repos");
+      return that.appendPerPage(that.url + "/user/repos");
+    },
+
+    userUrl: function(){
+      return that.url + "/user";
+    },
+
+    assignUrl: function(issue, user){
+      return issue.url + "?assignee=" + user.login;
     }
 
   }

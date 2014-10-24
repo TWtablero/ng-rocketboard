@@ -177,3 +177,7 @@ footer {
     text-decoration: none;
     font-weight: bold;
 }
+
+.issue-assigned img{
+    cursor: pointer;
+}

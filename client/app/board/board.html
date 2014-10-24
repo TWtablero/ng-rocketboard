@@ -36,15 +36,10 @@
                 <div as-sortable-item-handle class="issue">
                   <div class="issue-header">
                     <div target="_blank" class="issue-number pull-right" style="background-color:{{issue.repository.color}}">
-                      <a data-no-drag  href="{{issue.html_url}}" target="_blank" class="issue-number right">#{{issue.number}}</a>
+                      <a data-no-drag href="{{issue.html_url}}" target="_blank" class="issue-number right">#{{issue.number}}</a>
                     </div>
-                    <div class="issue-not-assigned" ng-hide="{{issue.assignee}}">
-                      <a data-no-drag class="assigns-myself">
-                        <span class="btn btn-default btn-xs"><i class="fa fa-user"></i> ASSIGN ME</span>
-                      </a>
-                    </div>
-                    <div class="issue-assigned" ng-show="{{issue.assignee}}">
-                      <img src="{{issue.assignee.avatar_url}}" width="42px" />
+                    <div class="issue-assigned" ng-click="assignMe(issue)">
+                      <img data-no-drag src="{{issue.assignee.avatar_url ? issue.assignee.avatar_url : 'assets/images/avatar-empty.png'}}" width="42px" />
                     </div>
                   </div>
                   <div class="issue-body"><span class="title list-group-item-heading" href="" target="_blank">{{issue.title}}</span>
