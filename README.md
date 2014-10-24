@@ -6,11 +6,23 @@ The original project can be found here: [@oliviagj/rocketboard](https://github.c
 
 Install
 ---
-Just these commands 
 
     npm install & bower install
     
- 
+
+Config
+---
+
+Create and Github OAuth Application
+Change the client_id and secret_id on file: /server/config/environment/development.js
+
+
+Run
+---
+
+    grunt serve
+    
+
 Contributions welcome!
 ---
 
