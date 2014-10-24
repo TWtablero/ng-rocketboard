@@ -7,20 +7,6 @@ module.exports = {
   mongo: {
     uri: 'mongodb://localhost/rockboard-dev'
   },
-
-  repositories: [{
-    id: "1",
-    username: "marcioviegas",
-    name: "rocketboard-1"
-  }, {
-    id: "2",
-    username: "marcioviegas",
-    name: "rocketboard-2"
-  }, {
-    id: "3",
-    username: "marcioviegas",
-    name: "rocketboard-3"
-  }],
   
   clientId: "c8e53a399aaaf4423852",
 
