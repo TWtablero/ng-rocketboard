@@ -1,7 +1,7 @@
-Angular RocketBoard
+RocketBoard 
 =========
 
-The original project can be found here: @oliviagj/rocketboard
+The original project can be found here: [@oliviagj/rocketboard](https://github.com/oliviagj/rocketboard)
 
 
 Install
