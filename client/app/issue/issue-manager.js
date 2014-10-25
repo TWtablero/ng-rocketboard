@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rocketBoardApp').service('IssueManager', function(IssueRepository, Socket, GithubApi, $http) {
+angular.module('rocketBoardApp').service('IssueManager', function(IssueRepository, Socket) {
   var that = this;
 
   this.changeStatus = function(issue, status) {
@@ -31,7 +31,7 @@ angular.module('rocketBoardApp').service('IssueManager', function(IssueRepositor
     }).then(function() {
       Socket.emit('change:issue', issue);
     });
-  }
+  };
 
   this.assign = function(issue, user) {
     issue.assignee = user;
@@ -45,7 +45,7 @@ angular.module('rocketBoardApp').service('IssueManager', function(IssueRepositor
 
   this.close = function(issue) {
     return IssueRepository.update(issue, {
-      state: "closed"
+      state: 'closed'
     }).then(function() {
       Socket.emit('change:issue', issue);
     });

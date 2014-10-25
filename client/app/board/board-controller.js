@@ -50,11 +50,7 @@ angular.module('rocketBoardApp').controller('BoardController', function(Socket, 
 
       IssueManager.changeStatus(issue, status);
       BoardManager.updateIssue(issue, status);
-    },
-    orderChanged: function() {
-
-    },
-    dragEnd: function() {}
+    }
   };
 
 });

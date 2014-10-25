@@ -21,13 +21,13 @@ angular.module('rocketBoardApp').service('IssueRepository', function($http) {
   this.update = function(issue, update) {
     var url = issue.url;
 
-    return $http.patch(url, update)
+    return $http.patch(url, update);
   };
 
   this.removeLabel = function(issue, label) {
     var url = issue.url + '/labels/' + label;
 
     return $http.delete(url);
-  }
+  };
 
 });
