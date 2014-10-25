@@ -1,6 +1,8 @@
-var app = angular.module('rocketBoardApp', ['ngCookies', 'btford.socket-io', 'mgcrea.ngStrap', 'ngResource', 'ui.select', 'ngSanitize', 'ngRoute', 'ui.sortable', 'oauth'])
+'use strict';
 
-app.config(function($httpProvider, $routeProvider, $locationProvider, $httpProvider) {
+var app = angular.module('rocketBoardApp', ['ngCookies', 'btford.socket-io', 'mgcrea.ngStrap', 'ngResource', 'ui.select', 'ngSanitize', 'ngRoute', 'ui.sortable', 'oauth']);
+
+app.config(function($httpProvider, $routeProvider, $locationProvider) {
 
   $routeProvider
     .when('/', {
@@ -17,11 +19,11 @@ app.config(function($httpProvider, $routeProvider, $locationProvider, $httpProvi
 
 }).run(function($http, $rootScope, LoginService, $location, UserManager) {
 
-  $rootScope.$on("$routeChangeStart", function(event, next, current) {
+  $rootScope.$on('$routeChangeStart', function(event, next) {
 
     if (next.params.access_token) {
       LoginService.login(next.params.access_token);
-      $http.defaults.headers.common['Authorization'] = 'token ' + LoginService.getToken();
+      $http.defaults.headers.common.Authorization = 'token ' + LoginService.getToken();
 
       UserManager.getUser().then(function(res) {
         $rootScope.user = res.data;
@@ -30,10 +32,9 @@ app.config(function($httpProvider, $routeProvider, $locationProvider, $httpProvi
       $location.url($location.path());
     }
 
-    if (next.requireLogin && !LoginService.isLoggedIn())
+    if (next.requireLogin && !LoginService.isLoggedIn()){
       window.location = 'http://github.com/login/oauth/authorize?client_id=c8e53a399aaaf4423852&scope=public_repo';
+    }
   });
 
 });
-
-angular.module('rockboardApp', []);

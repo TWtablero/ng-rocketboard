@@ -1,27 +1,22 @@
-var app = angular.module("rocketBoardApp");
+'use strict';
 
-app.factory("LoginService", function($q, $http) {
+angular.module('rocketBoardApp').service('LoginService', function() {
   var that = this;
 
-  that.access_token = null;
+  this.login = function(access_token) {
+    that.access_token = access_token;
+  };
 
-  return {
+  this.getToken = function() {
+    return that.access_token;
+  };
 
-    login: function(access_token) {
-      that.access_token = access_token;
-    },
+  this.logOut = function() {
+    that.access_token = null;
+  };
 
-    getToken: function() {
-      return that.access_token
-    },
-
-    logOut: function(access_token) {
-      that.access_token = null;
-    },
-
-    isLoggedIn: function() {
-      return that.access_token;
-    }
-  }
+  this.isLoggedIn = function() {
+    return that.access_token;
+  };
 
 });

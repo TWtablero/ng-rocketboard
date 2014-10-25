@@ -1,7 +1,6 @@
-var app = angular.module("rocketBoardApp");
+'use strict';
 
-app.service('UserManager', function($http, GithubApi) {
-  var that = this;
+angular.module('rocketBoardApp').service('UserManager', function($http, GithubApi) {
 
   this.getUser = function(){
   	return $http.get(GithubApi.userUrl());

@@ -6,10 +6,10 @@ angular.module('rocketBoardApp').controller('BoardAddIssueController', function(
   this.boardIssueModal = $modal({
     show: false,
     template: 'app/board/board.add.issue.modal.html',
-    container: "content",
+    container: 'content',
     placement: 'center',
     scope: $scope,
-    animation: "am-fade"
+    animation: 'am-fade'
   });
 
   $scope.addToBoard = function() {

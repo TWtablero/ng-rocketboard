@@ -1,8 +1,6 @@
-var app = angular.module("rocketBoardApp");
+'use strict';
 
-app.factory("GithubRepository", function($http, LoginService, GithubApi) {
-  var that = this;
-
+angular.module('rocketBoardApp').factory('GithubRepository', function($http, LoginService, GithubApi) {
   return {
 
     addLabelOnIssue: function(issue, label) {
@@ -21,6 +19,6 @@ app.factory("GithubRepository", function($http, LoginService, GithubApi) {
       return $http.get(GithubApi.issuesUrl(repository), {cache:false});
     }
 
-  }
+  };
 
 });

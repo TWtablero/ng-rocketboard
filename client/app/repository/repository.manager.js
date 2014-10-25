@@ -1,6 +1,6 @@
-var app = angular.module('rocketBoardApp');
+'use strict';
 
-app.service('RepositoryManager', function($http, $q, GithubApi) {
+angular.module('rocketBoardApp').service('RepositoryManager', function($http, $q, GithubApi) {
 
   this.getRepositoriesIssues = function(repositories) {
     var that = this;
@@ -14,12 +14,13 @@ app.service('RepositoryManager', function($http, $q, GithubApi) {
   };
 
   this.getRepositoryIssue = function(repository) {
-    if (repository.issues)
+    if (repository.issues) {
       $q.defer().resolve(repository);
-    else
+    } else {
       return $http.get(GithubApi.issuesUrl(repository)).then(function(res) {
         repository.issues = res.data;
       });
+    }
 
   };
 

@@ -1,6 +1,6 @@
-var app = angular.module('rocketBoardApp');
+'use strict';
 
-app.filter('statusFilter', function() {
+angular.module('rocketBoardApp').filter('statusFilter', function() {
    return function( issues, status) {
     var filtered = [];
 
@@ -9,7 +9,7 @@ app.filter('statusFilter', function() {
     }
 
     _.forEach(issues, function(issue) {          
-       if(issue.status && issue.status == status){
+       if(issue.status && issue.status === status){
         filtered.push(issue);
        }
     });

@@ -1,6 +1,6 @@
-var app = angular.module("rocketBoardApp");
+'use strict';
 
-app.service('IssueManager', function(GithubRepository, Socket, GithubApi, $http) {
+angular.module('rocketBoardApp').service('IssueManager', function(GithubRepository, Socket, GithubApi, $http) {
   var that = this;
 
   this.changeStatus = function(issue, status) {
@@ -25,7 +25,7 @@ app.service('IssueManager', function(GithubRepository, Socket, GithubApi, $http)
 
   this.assignIssueToUser = function(issue, user){
     issue.assignee = user;
-    return $http.patch(GithubApi.assignUrl(issue, user), {assignee: user.login}).then(function(res) {
+    return $http.patch(GithubApi.assignUrl(issue, user), {assignee: user.login}).then(function() {
         Socket.emit('change:issue', issue);
       });
   };

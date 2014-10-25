@@ -1,9 +1,9 @@
-var app = angular.module("rocketBoardApp");
+'use strict';
 
-app.service('BoardManager', function(IssueManager, Socket, BoardFactory) {
+angular.module('rocketBoardApp').service('BoardManager', function(IssueManager, Socket, BoardFactory) {
   var that = this;
 
-  Socket.on("issue:changed", function(res) {
+  Socket.on('issue:changed', function(res) {
     that.updateIssue(res.issue);
   });
 
@@ -20,8 +20,6 @@ app.service('BoardManager', function(IssueManager, Socket, BoardFactory) {
 
       //Update issue on repository
       this.getRepository(issue.repository.id).issues[that.findIndex(repository.issues, issue)] = issue;
-      console.log("atualiza issue no repo");
-
 
       if (that.onBoard(issue) && that.isShowingRepository(repository)) {
 
@@ -29,17 +27,10 @@ app.service('BoardManager', function(IssueManager, Socket, BoardFactory) {
           id: issue.id
         })] = issue;
 
-         console.log("atualiza issue no board");
-         console.log(issue);
-
-        //console.log(that.board.issues);
-
       } else if (that.isShowingRepository(repository)) {
         that.addIssue(issue);
-        console.log("adicionou issue porque repo ta mostrando")
       }
     }
-    console.log(that.board.repositoriesAdded);
   };
 
   this.isShowingRepository = function(repository) {
@@ -52,7 +43,7 @@ app.service('BoardManager', function(IssueManager, Socket, BoardFactory) {
     return _.findIndex(colection, {
       id: object.id
     });
-  }
+  };
 
   this.onBoard = function(issue) {
     return _.findIndex(that.board.issues, {
@@ -66,14 +57,14 @@ app.service('BoardManager', function(IssueManager, Socket, BoardFactory) {
   };
 
   this.addRepository = function(repository) {
-    var repository = that.getRepository(repository.id);
-    that.board.repositoriesAdded.push(repository);
-    that.addIssues(repository);
+    var _repository = that.getRepository(repository.id);
+    that.board.repositoriesAdded.push(_repository);
+    that.addIssues(_repository);
 
     //Not proud
-    $("span").filter(function() {
-      return $(this).text() == repository.name
-    }).closest(".ui-select-match-item").css("background", repository.color);
+    $('span').filter(function() {
+      return $(this).text() === _repository.name;
+    }).closest('.ui-select-match-item').css('background', _repository.color);
   };
 
   this.changeRepositories = function(repositories) {
@@ -98,17 +89,13 @@ app.service('BoardManager', function(IssueManager, Socket, BoardFactory) {
   this.addIssue = function(repository, issue) {
     var status = null;
     _.forEach(that.board.columns, function(col) {
-      if (_.contains(_.pluck(issue.labels, "name"), col.status)) {
+      if (_.contains(_.pluck(issue.labels, 'name'), col.status)) {
         status = col.status;
       }
     });
-    issue.repository = _.omit(repository, "issues");
-    issue.status = status || "nostatus";
+    issue.repository = _.omit(repository, 'issues');
+    issue.status = status || 'nostatus';
     that.board.issues.push(issue);
-  };
-
-  this.setBoard = function() {
-    that.board = board;
   };
 
   this.getBoard = function() {
