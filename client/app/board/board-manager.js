@@ -47,8 +47,8 @@ angular.module('rocketBoardApp').service('BoardManager', function(IssueManager, 
 
   this.onBoard = function(issue) {
     return _.findIndex(that.board.issues, {
-          id: issue.id
-        }) > -1;
+      id: issue.id
+    }) > -1;
   };
 
   this.makeBoard = function(repositories) {
@@ -60,11 +60,19 @@ angular.module('rocketBoardApp').service('BoardManager', function(IssueManager, 
     var _repository = that.getRepository(repository.id);
     that.board.repositoriesAdded.push(_repository);
     that.addIssues(_repository);
+    that.addStyleAndEvents(_repository);
+  };
 
-    //Not proud
-    $('span').filter(function() {
-      return $(this).text() === _repository.name;
-    }).closest('.ui-select-match-item').css('background', _repository.color);
+  //Not proud
+  that.addStyleAndEvents = function(repository) {
+    var repositorySpan = $('span').filter(function() {
+      return $(this).text() === repository.name;
+    }).closest('.ui-select-match-item');
+
+    repositorySpan.css('background', repository.color);
+    repositorySpan.click(function() {
+      window.open(repository.html_url);
+    });
   };
 
   this.changeRepositories = function(repositories) {
