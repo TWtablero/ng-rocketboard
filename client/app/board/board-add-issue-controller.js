@@ -5,7 +5,7 @@ angular.module('rocketBoardApp').controller('BoardAddIssueController', function(
 
   this.boardIssueModal = $modal({
     show: false,
-    template: 'app/board/board.add.issue.modal.html',
+    template: 'app/board/board-add-issue-modal.html',
     container: 'content',
     placement: 'center',
     scope: $scope,
