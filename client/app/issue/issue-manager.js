@@ -23,10 +23,20 @@ angular.module('rocketBoardApp').service('IssueManager', function(IssueRepositor
     return IssueRepository.findByRepository(repository);
   };
 
-  this.assignToUser = function(issue, user) {
+  this.removeAssign = function(issue){
+    issue.assignee = null;
+
+    return IssueRepository.update(issue, {
+      assignee: null
+    }).then(function() {
+      Socket.emit('change:issue', issue);
+    });
+  }
+
+  this.assign = function(issue, user) {
     issue.assignee = user;
 
-    return IssueRepository.update({
+    return IssueRepository.update(issue, {
       assignee: user.login
     }).then(function() {
       Socket.emit('change:issue', issue);

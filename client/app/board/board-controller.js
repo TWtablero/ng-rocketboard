@@ -12,24 +12,30 @@ angular.module('rocketBoardApp').controller('BoardController', function(Socket, 
   });
 
   // Just for tests and fun
-  $scope.trigger = function(){
+  $scope.trigger = function() {
     triggerRocketAnimation();
   };
 
   $scope.assignMe = function(issue) {
-    if (issue.assignee && issue.assignee.id === $rootScope.user.id){
-      return;
+    if ($scope.isIssueAssignedToUser(issue)) {
+      IssueManager.removeAssign(issue);
+    } else {
+      IssueManager.assign(issue, $rootScope.user);
     }
 
-    IssueManager.assignToUser(issue, $rootScope.user);
     BoardManager.updateIssue(issue);
-  };
+  }; 
+
+  $scope.isIssueAssignedToUser = function(issue){
+    return issue.assignee && issue.assignee.id === $rootScope.user.id;
+  }
 
   $scope.$watch('multipleOptions.selectedRepositories', function() {
-    if ($scope.board){
+    if ($scope.board) {
       RepositoryManager.populateRepositoriesIssues($scope.multipleOptions.selectedRepositories).then(function() {
         BoardManager.changeRepositories($scope.multipleOptions.selectedRepositories);
-      });}
+      });
+    }
   });
 
   $scope.boardSortOptions = {

@@ -18,7 +18,7 @@ angular.module('rocketBoardApp').service('IssueRepository', function($http) {
     );
   };
 
-  this.update = function(update) {
+  this.update = function(issue, update) {
     var url = issue.url;
 
     return $http.patch(url, update)
