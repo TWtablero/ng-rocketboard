@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rocketBoardApp').service('BoardFactory', function(ColorPicker) {
+angular.module('rocketBoardApp').service('BoardFactory', function(RepositoryColorPicker) {
   var that = this;
 
   this.sprintBoard = {
@@ -26,7 +26,7 @@ angular.module('rocketBoardApp').service('BoardFactory', function(ColorPicker) {
       var board = new Board(that.sprintBoard.name, that.sprintBoard.numberOfColumns);
 
       _.forEach(repositories, function(repository) {
-        repository.color = ColorPicker.getNextColor();
+        repository.color = RepositoryColorPicker.getNextColor();
         board.repositories.push(repository);
       });
 

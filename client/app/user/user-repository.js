@@ -2,8 +2,8 @@
 
 angular.module('rocketBoardApp').service('UserRepository', function($http, GithubApi) {
 
-  this.getUser = function(){
-  	var url = GithubApi.getApiUrl() + "/user";
+  this.find = function(){
+  	var url = GithubApi.getUrl() + "/user";
 
   	return $http.get(url);
   };

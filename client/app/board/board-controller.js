@@ -7,10 +7,11 @@ angular.module('rocketBoardApp').controller('BoardController', function(Socket, 
   $scope.multipleOptions.selectedIssues = [];
 
   // Put on login ?
-  RepositoryManager.getList().then(function(res) {
+  RepositoryManager.findList().then(function(res) {
     $scope.board = BoardManager.makeBoard(res.data);
   });
 
+  // Just for tests and fun
   $scope.trigger = function(){
     triggerRocketAnimation();
   };
@@ -20,13 +21,13 @@ angular.module('rocketBoardApp').controller('BoardController', function(Socket, 
       return;
     }
 
-    IssueManager.assignIssueToUser(issue, $rootScope.user);
+    IssueManager.assignToUser(issue, $rootScope.user);
     BoardManager.updateIssue(issue);
   };
 
   $scope.$watch('multipleOptions.selectedRepositories', function() {
     if ($scope.board){
-      RepositoryManager.getRepositoriesIssues($scope.multipleOptions.selectedRepositories).then(function() {
+      RepositoryManager.populateRepositoriesIssues($scope.multipleOptions.selectedRepositories).then(function() {
         BoardManager.changeRepositories($scope.multipleOptions.selectedRepositories);
       });}
   });

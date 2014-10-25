@@ -19,7 +19,7 @@ angular.module('rocketBoardApp').service('IssueManager', function(IssueRepositor
     });
   };
 
-  this.getListFromRepository = function(repository) {
+  this.findByRepository = function(repository) {
     return IssueRepository.findByRepository(repository);
   };
 

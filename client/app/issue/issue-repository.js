@@ -5,9 +5,7 @@ angular.module('rocketBoardApp').service('IssueRepository', function($http) {
   this.findByRepository = function(repository) {
     var url = repository.url + '/issues';
 
-    return $http.get(GithubApi.issuesUrl(repository), {
-      cache: false
-    });
+    return $http.get(url);
   };
 
   this.addLabel = function(issue, label) {
