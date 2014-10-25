@@ -17,17 +17,13 @@ angular.module('rocketBoardApp').controller('BoardController', function(Socket, 
   };
 
   $scope.toggleAssignee = function(issue) {
-    if ($scope.isIssueAssignedToUser(issue)) {
+    if (issue.assignee && issue.assignee.id === $rootScope.user.id) {
       IssueManager.removeAssign(issue);
     } else {
       IssueManager.assign(issue, $rootScope.user);
     }
     BoardManager.updateIssue(issue);
   }; 
-
-  $scope.isIssueAssignedToUser = function(issue){
-    return issue.assignee && issue.assignee.id === $rootScope.user.id;
-  }
 
   $scope.$watch('multipleOptions.selectedRepositories', function() {
     if ($scope.board) {
@@ -47,6 +43,7 @@ angular.module('rocketBoardApp').controller('BoardController', function(Socket, 
       if (event.dest.sortableScope.$id === 5) {
         status = '5 - Done';
         triggerRocketAnimation();
+        IssueManager.close(issue);
       } else {
         status = event.dest.sortableScope.$parent.column.status;
       }

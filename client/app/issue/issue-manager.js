@@ -23,7 +23,7 @@ angular.module('rocketBoardApp').service('IssueManager', function(IssueRepositor
     return IssueRepository.findByRepository(repository);
   };
 
-  this.removeAssign = function(issue){
+  this.removeAssign = function(issue) {
     issue.assignee = null;
 
     return IssueRepository.update(issue, {
@@ -38,6 +38,14 @@ angular.module('rocketBoardApp').service('IssueManager', function(IssueRepositor
 
     return IssueRepository.update(issue, {
       assignee: user.login
+    }).then(function() {
+      Socket.emit('change:issue', issue);
+    });
+  };
+
+  this.close = function(issue) {
+    return IssueRepository.update(issue, {
+      state: "closed"
     }).then(function() {
       Socket.emit('change:issue', issue);
     });
