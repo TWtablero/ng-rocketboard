@@ -17,13 +17,13 @@ app.config(function($httpProvider, $routeProvider, $locationProvider) {
 
   $locationProvider.html5Mode(true);
 
-}).run(function($http, $rootScope, LoginService, $location, UserManager) {
+}).run(function($http, $rootScope, UserLoginService, $location, UserManager) {
 
   $rootScope.$on('$routeChangeStart', function(event, next) {
 
     if (next.params.access_token) {
-      LoginService.login(next.params.access_token);
-      $http.defaults.headers.common.Authorization = 'token ' + LoginService.getToken();
+      UserLoginService.login(next.params.access_token);
+      $http.defaults.headers.common.Authorization = 'token ' + UserLoginService.getToken();
 
       UserManager.find().then(function(res) {
         $rootScope.user = res.data;
@@ -32,7 +32,7 @@ app.config(function($httpProvider, $routeProvider, $locationProvider) {
       $location.url($location.path());
     }
 
-    if (next.requireLogin && !LoginService.isLoggedIn()){
+    if (next.requireLogin && !UserLoginService.isLoggedIn()){
       window.location = 'http://github.com/login/oauth/authorize?client_id=c8e53a399aaaf4423852&scope=public_repo';
     }
   });

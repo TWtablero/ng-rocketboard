@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rocketBoardApp').service('LoginService', function() {
+angular.module('rocketBoardApp').service('UserLoginService', function() {
   var that = this;
 
   this.login = function(access_token) {
