@@ -17,7 +17,7 @@ app.config(function($httpProvider, $routeProvider, $locationProvider) {
 
   $locationProvider.html5Mode(true);
 
-}).run(function($http, $rootScope, LoginService, $location, UserManager) {
+}).run(function($http, $rootScope, LoginService, $location, UserRepository) {
 
   $rootScope.$on('$routeChangeStart', function(event, next) {
 
@@ -25,7 +25,7 @@ app.config(function($httpProvider, $routeProvider, $locationProvider) {
       LoginService.login(next.params.access_token);
       $http.defaults.headers.common.Authorization = 'token ' + LoginService.getToken();
 
-      UserManager.getUser().then(function(res) {
+      UserRepository.getUser().then(function(res) {
         $rootScope.user = res.data;
       });
 

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rocketBoardApp').controller('BoardController', function(Socket, UserManager, $rootScope, $scope, RepositoryManager, IssueManager, BoardManager) {
+angular.module('rocketBoardApp').controller('BoardController', function(Socket, $rootScope, $scope, RepositoryManager, IssueManager, BoardManager) {
   // That's why I hate ui-select
   $scope.multipleOptions = {};
   $scope.multipleOptions.selectedRepositories = [];

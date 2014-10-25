@@ -12,6 +12,10 @@ angular.module('rocketBoardApp').factory('GithubApi', function() {
 
   return {
 
+    getApiUrl: function(){
+      return that.url;
+    },
+
     addLabelUrl: function(issue) {
       var addLabelUrl = issue.url + '/labels';
       return addLabelUrl;
@@ -29,14 +33,6 @@ angular.module('rocketBoardApp').factory('GithubApi', function() {
 
     userRepositoriesUrl: function(){
       return that.appendPerPage(that.url + '/user/repos');
-    },
-
-    userUrl: function(){
-      return that.url + '/user';
-    },
-
-    assignUrl: function(issue, user){
-      return issue.url + '?assignee=' + user.login;
     }
 
   };
