@@ -41,7 +41,7 @@
                           <a data-no-drag href="{{issue.html_url}}" target="_blank" class="issue-number right">#{{issue.number}}</a>
                         </div>
                         <div class="issue-assigned">
-                          <img bs-tooltip='tooltip' title="Toggle issue assignee" data-no-drag ng-click="assignMe(issue)" src="{{issue.assignee.avatar_url ? issue.assignee.avatar_url : 'assets/images/avatar-empty.png'}}" width="42px" />
+                          <img bs-tooltip='tooltip' title="Toggle issue assignee" data-no-drag ng-click="toggleAssignee(issue)" src="{{issue.assignee.avatar_url ? issue.assignee.avatar_url : 'assets/images/avatar-empty.png'}}" width="42px" />
                         </div>
                       </div>
                       <div class="issue-body">

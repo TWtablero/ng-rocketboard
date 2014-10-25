@@ -16,13 +16,12 @@ angular.module('rocketBoardApp').controller('BoardController', function(Socket, 
     triggerRocketAnimation();
   };
 
-  $scope.assignMe = function(issue) {
+  $scope.toggleAssignee = function(issue) {
     if ($scope.isIssueAssignedToUser(issue)) {
       IssueManager.removeAssign(issue);
     } else {
       IssueManager.assign(issue, $rootScope.user);
     }
-
     BoardManager.updateIssue(issue);
   }; 
 
