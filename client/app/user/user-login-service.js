@@ -16,7 +16,7 @@ angular.module('rocketBoardApp').service('UserLoginService', function() {
   };
 
   this.isLoggedIn = function() {
-    return that.access_token;
+    return that.access_token ? true : false;
   };
 
 });

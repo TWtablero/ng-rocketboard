@@ -7,15 +7,34 @@ module.exports = function(config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['mocha', 'sinon-chai',  'chai', 'chai-things'],
 
     // list of files / patterns to load in the browser
     files: [
+
+      'client/bower_components/jquery/dist/jquery.js',
+      'client/bower_components/js-base64/base64.js',
+      'client/bower_components/angular/angular.js',
+      'client/bower_components/angular-resource/angular-resource.js',
+      'client/bower_components/angular-cookies/angular-cookies.js',
+      'client/bower_components/angular-sanitize/angular-sanitize.js',
+      'client/bower_components/angular-route/angular-route.js',
+      'client/bower_components/lodash/dist/lodash.compat.js',
+      'client/bower_components/ng-sortable/dist/ng-sortable.js',
+      'client/bower_components/ngstorage/ngStorage.js',
+      'client/bower_components/oauth-ng/dist/oauth-ng.js',
+      'client/bower_components/angular-ui-router/release/angular-ui-router.js',
+      'client/bower_components/angular-ui-select/dist/select.js',
+      'client/bower_components/angular-animate/angular-animate.js',
+      'client/bower_components/angular-strap/dist/angular-strap.js',
+      'client/bower_components/angular-strap/dist/angular-strap.tpl.js',
+      'client/bower_components/angular-socket-io/socket.js',
+      'client/bower_components/jquery.easing/js/jquery.easing.js',
+      'client/bower_components/angular-mocks/angular-mocks.js',
+      'node_modules/socket.io-client/socket.io.js',
       'client/app/app.js',
       'client/app/**/*.js',
-      'client/components/**/*.js',
-      'client/app/**/*.html',
-      'client/components/**/*.html'
+      'client/components/**/*.js'
     ],
 
     preprocessors: {
@@ -40,10 +59,8 @@ module.exports = function(config) {
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
     logLevel: config.LOG_INFO,
 
-
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
-
+    autoWatch: true,
 
     // Start these browsers, currently available:
     // - Chrome
@@ -54,7 +71,6 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers: ['PhantomJS'],
-
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit

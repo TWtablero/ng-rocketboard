@@ -18,7 +18,6 @@ angular.module('rocketBoardApp').service('BoardManager', function(IssueManager, 
       //Need to maintain colors 
       issue.repository.color = issueReference.repository.color;
 
-      //Update issue on repository
       this.getRepository(issue.repository.id).issues[that.findIndex(repository.issues, issue)] = issue;
 
       if (that.onBoard(issue) && that.isShowingRepository(repository)) {

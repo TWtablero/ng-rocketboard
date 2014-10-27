@@ -1,5 +1,7 @@
 'use strict';
+
 /* jshint ignore:start */
+
 function Board(name, numberOfColumns) {
   return {
     name: name,

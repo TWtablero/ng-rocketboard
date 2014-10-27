@@ -17,7 +17,10 @@ angular.module('rocketBoardApp').service('RepositoryManager', function($q, Issue
 
     // Already populated
     if (repository.issues) {
-      $q.defer().resolve(repository);
+      // Just for precaution, I'm not sure if I need this, buuuuut...
+      var promise = $q.defer();
+      promise.resolve(repository);
+      return promise.promise;
     } else {
       return IssueManager.findByRepository(repository).then(function(res) {
         repository.issues = res.data;
