@@ -7,6 +7,7 @@ angular.module('rocketBoardApp').service('BoardManager', function(IssueManager, 
     that.updateIssue(res.issue);
   });
 
+  // How do I test this monster?
   this.updateIssue = function(issue) {
 
     var repository = this.getRepository(issue.repository.id);
