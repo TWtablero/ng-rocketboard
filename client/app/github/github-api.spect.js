@@ -1,5 +1,8 @@
-describe('GithubApi', function() {
+'use strict';
 
+describe('GithubApi', function() {
+  var GithubApi;
+  
   beforeEach(module('rocketBoardApp'));
 
   beforeEach(function() {

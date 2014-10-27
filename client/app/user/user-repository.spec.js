@@ -1,3 +1,5 @@
+'use strict';
+
 describe('UserRepository', function() {
 
   var sandbox, UserRepository;
@@ -22,7 +24,7 @@ describe('UserRepository', function() {
   describe('when method find called', function() {
 
     beforeEach(function() {
-      UserRepository.find()
+      UserRepository.find();
     });
 
     it('should call http with correct endpoint', function() {

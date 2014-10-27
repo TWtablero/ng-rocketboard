@@ -1,3 +1,5 @@
+'use strict';
+
 describe('RepositoryManager', function() {
 
   var sandbox, RepositoryManager, RepositoryRepository, IssueManager;

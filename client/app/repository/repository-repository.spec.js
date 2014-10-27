@@ -1,3 +1,5 @@
+'use strict';
+
 describe('RepositoryRepository', function() {
 
   var sandbox, RepositoryRepository;

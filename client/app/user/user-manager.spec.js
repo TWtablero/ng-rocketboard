@@ -1,6 +1,8 @@
+'use strict';
+
 describe('UserManager', function() {
 
-  var sandbox, UserManager;
+  var sandbox, UserManager, UserRepository;
 
   beforeEach(module('rocketBoardApp'));
 

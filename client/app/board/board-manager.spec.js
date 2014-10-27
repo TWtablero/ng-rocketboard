@@ -1,6 +1,8 @@
+'use strict';
+
 describe('BoardManager', function() {
 
-  var sandbox, Socket, BoardFactory, BoardManager;
+  var sandbox, Socket, BoardFactory, BoardManager, $q;
 
   beforeEach(module('rocketBoardApp'));
 

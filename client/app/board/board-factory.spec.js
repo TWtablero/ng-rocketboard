@@ -1,4 +1,7 @@
+'use strict';
+
 describe('BoardFactory', function() {
+  var sandbox, BoardFactory;  
 
   beforeEach(module('rocketBoardApp'));
 
@@ -21,10 +24,11 @@ describe('BoardFactory', function() {
     }, {
       name: 2
     }];
+
     var board;
 
     beforeEach(function() {
-      board = BoardFactory.makeBoard(repositories)
+      board = BoardFactory.makeBoard(repositories);
     });
 
     it('board should exist', function() {
