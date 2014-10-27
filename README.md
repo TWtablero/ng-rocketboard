@@ -1,4 +1,4 @@
-Rocketboard 
+Rocketboard  [![Build Status](https://travis-ci.org/marcioviegas/rocketboard.svg?branch=master)](https://travis-ci.org/marcioviegas/rocketboard)
 =========
 
 The original project can be found here: [@oliviagj/rocketboard](https://github.com/oliviagj/rocketboard)
