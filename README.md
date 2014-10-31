@@ -1,4 +1,4 @@
-Rocketboard  [![Build Status](https://travis-ci.org/marcioviegas/rocketboard.svg?branch=master)](https://travis-ci.org/marcioviegas/rocketboard)
+Rocketboard  [![Build Status](https://snap-ci.com/marcioviegas/rocketboard/branch/master/build_image)](https://snap-ci.com/marcioviegas/rocketboard/branch/master)
 =========
 
 The original project can be found here: [@oliviagj/rocketboard](https://github.com/oliviagj/rocketboard)
