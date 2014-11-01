@@ -9,7 +9,7 @@ angular.module('rocketBoardApp').filter('statusFilter', function() {
     }
 
     _.forEach(issues, function(issue) {          
-       if(issue.status && issue.status === status){
+       if(issue.status === status){
         filtered.push(issue);
        }
     });

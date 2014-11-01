@@ -50,30 +50,80 @@ describe('IssueManager', function() {
   describe('when changeStatus', function() {
     var issue, newStatus;
 
-    beforeEach(function() {
-      issue = {
-        status: "0 - Backlog"
-      };
-      newStatus = "1 - Ready";
+    describe('and exist issue.status and newStatus', function() {
+      beforeEach(function() {
+        issue = {
+          status: "2 - Development"
+        };
+        newStatus = "1 - Ready";
 
-      sandbox.stub(IssueManager, 'addLabel', function() {});
+        sandbox.stub(IssueManager, 'addLabel', function() {});
 
-      IssueManager.changeStatus(issue, newStatus);
-      $rootScope.$digest();
+        IssueManager.changeStatus(issue, newStatus);
+        $rootScope.$digest();
+      });
+
+      it('issue status should be equals label', function() {
+        issue.status.should.be.equals(newStatus);
+      });
+
+      it('should call remove label with issues and label', function() {
+        IssueRepository.removeLabel.should.be.called;
+        IssueRepository.removeLabel.should.be.calledWith(issue, "2 - Development");
+      });
+
+      it('should call manager addLabel with issue and label', function() {
+        IssueManager.addLabel.should.be.called;
+        IssueManager.addLabel.should.be.calledWith(issue, newStatus);
+      });
     });
 
-    it('issue status should be equals label', function() {
-      issue.status.should.be.equals(newStatus);
+    describe('and issue.status == null', function() {
+
+      beforeEach(function() {
+        issue = {
+          status: null
+        };
+        newStatus = "1 - Ready";
+
+        sandbox.stub(IssueManager, 'addLabel', function() {});
+        IssueManager.changeStatus(issue, newStatus);
+        $rootScope.$digest();
+      });
+
+      it('should add label', function() {
+        IssueManager.addLabel.should.be.called;
+        IssueManager.addLabel.should.be.calledWith(issue, newStatus);
+      });
+
+      it('should not remove label', function() {
+        IssueRepository.removeLabel.should.not.be.called;
+      });
+
     });
 
-    it('should call remove label with issues and label', function() {
-      IssueRepository.removeLabel.should.be.called;
-      IssueRepository.removeLabel.should.be.calledWith(issue, "0 - Backlog");
-    });
+    describe('and newStatus == null', function() {
 
-    it('should call manager addLabel with issue and label', function() {
-      IssueManager.addLabel.should.be.called;
-      IssueManager.addLabel.should.be.calledWith(issue, newStatus);
+      beforeEach(function() {
+        issue = {
+          status: "1 - Ready"
+        };
+        newStatus = null;
+
+        sandbox.stub(IssueManager, 'addLabel', function() {});
+        IssueManager.changeStatus(issue, newStatus);
+        $rootScope.$digest();
+      });
+
+      it('should remove label', function() {
+        IssueRepository.removeLabel.should.be.called;
+        IssueRepository.removeLabel.should.be.calledWith(issue, "1 - Ready");
+      });
+
+      it('should not add label', function() {
+        IssueManager.addLabel.should.not.be.called;
+      });
+
     });
 
   });

@@ -7,7 +7,7 @@ angular.module('rocketBoardApp').service('BoardFactory', function(RepositoryColo
     'name': 'Spring Board',
     'numberOfColumns': 4,
     'columns': [{
-      'status': '0 - Backlog',
+      'status': null,
       'name': 'Backlog'
     }, {
       'status': '1 - Ready',

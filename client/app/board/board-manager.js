@@ -102,7 +102,7 @@ angular.module('rocketBoardApp').service('BoardManager', function(IssueManager, 
       }
     });
     issue.repository = _.omit(repository, 'issues');
-    issue.status = status || 'nostatus';
+    issue.status = status || null;
     that.board.issues.push(issue);
   };
 

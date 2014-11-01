@@ -8,9 +8,22 @@ angular.module('rocketBoardApp').service('IssueManager', function(IssueRepositor
     // I don't want to wait remove to change status on screen
     issue.status = status;
 
-    return IssueRepository.removeLabel(issue, oldStatus).then(function() {
+    if (issue.status && oldStatus) {
+      return IssueRepository.removeLabel(issue, oldStatus).then(function() {
+        return that.addLabel(issue, status);
+      });
+    }
+
+    if (issue.status) {
       return that.addLabel(issue, status);
-    });
+    }
+
+    if (oldStatus) {
+      return IssueRepository.removeLabel(issue, oldStatus).then(function() {
+        Socket.emit('change:issue', issue);
+      });
+    }
+
   };
 
   this.addLabel = function(issue, label) {
