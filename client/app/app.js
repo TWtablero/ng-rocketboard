@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('rocketBoardApp', ['ngCookies', 'btford.socket-io', 'mgcrea.ngStrap', 'ngResource', 'ui.select', 'ngSanitize', 'ngRoute', 'ui.sortable', 'oauth']);
+var app = angular.module('rocketBoardApp', ['ngCookies', 'angular-loading-bar', 'btford.socket-io', 'mgcrea.ngStrap', 'ngResource', 'ui.select', 'ngSanitize', 'ngRoute', 'ui.sortable', 'oauth']);
 
 app.config(function($httpProvider, $routeProvider, $locationProvider) {
 
@@ -37,4 +37,6 @@ app.config(function($httpProvider, $routeProvider, $locationProvider) {
     }
   });
 
+}).config(function(cfpLoadingBarProvider){
+  cfpLoadingBarProvider.includeSpinner = false;
 });

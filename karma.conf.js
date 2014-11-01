@@ -13,7 +13,6 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-
       'client/bower_components/jquery/dist/jquery.js',
       'client/bower_components/js-base64/base64.js',
       'client/bower_components/angular/angular.js',
@@ -33,6 +32,7 @@ module.exports = function(config) {
       'client/bower_components/angular-socket-io/socket.js',
       'client/bower_components/jquery.easing/js/jquery.easing.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
+      'client/bower_components/angular-loading-bar/build/loading-bar.js'
       'node_modules/socket.io-client/socket.io.js',
       'client/app/app.js',
       'client/app/**/*.js',
