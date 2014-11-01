@@ -73,7 +73,7 @@ describe('IssueManager', function() {
 
     it('should call manager addLabel with issue and label', function() {
       IssueManager.addLabel.should.be.called;
-      IssueManager.addLabel.should.be.calledWith(issue, issue.status);
+      IssueManager.addLabel.should.be.calledWith(issue, newStatus);
     });
 
   });

@@ -59,7 +59,7 @@
 }
 body, html {
     height: 100%;
-    background: white;
+    background: white !important;
 }
 .browsehappy {
     margin: 0.2em 0;

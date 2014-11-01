@@ -9,6 +9,8 @@ module.exports = function(config) {
     // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['mocha', 'sinon-chai',  'chai', 'chai-things'],
 
+    reporters: ['progress', 'osx'],
+
     // list of files / patterns to load in the browser
     files: [
 

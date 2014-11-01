@@ -12,6 +12,7 @@ angular.module('rocketBoardApp').controller('BoardAddIssueController', function(
     animation: 'am-fade'
   });
 
+  // Board dependency not good
   $scope.addToBoard = function() {
     _.forEach($scope.multipleOptions.selectedIssues, function(issue) {
       issue.status = $scope.board.columns[0].status;
