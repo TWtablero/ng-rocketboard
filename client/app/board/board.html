@@ -40,7 +40,8 @@
                           <a data-no-drag href="{{issue.html_url}}" target="_blank" class="issue-number right">#{{issue.number}}</a>
                         </div>
                         <div class="issue-assigned">
-                          <img bs-tooltip='tooltip' title="Toggle issue assignee" data-no-drag ng-click="toggleAssignee(issue)" src="{{issue.assignee.avatar_url ? issue.assignee.avatar_url : 'assets/images/avatar-empty.png'}}" width="42px" />
+                          <img bs-tooltip='tooltip' data-no-drag ng-click="addAssignee(issue)" src="{{issue.assignee.avatar_url ? issue.assignee.avatar_url : 'assets/images/avatar-empty.png'}}" width="42px" />
+                          <i data-no-drag class="fa fa-ban fa-fw clickable" ng-show="issue.assignee" ng-click="removeAssignee(issue)"></i>
                         </div>
                       </div>
                       <div class="issue-body">

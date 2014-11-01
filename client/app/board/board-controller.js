@@ -16,14 +16,14 @@ angular.module('rocketBoardApp').controller('BoardController', function(Socket, 
     triggerRocketAnimation();
   };
 
-  $scope.toggleAssignee = function(issue) {
-    if (issue.assignee && issue.assignee.id === $rootScope.user.id) {
-      IssueManager.removeAssign(issue);
-    } else {
-      IssueManager.assign(issue, $rootScope.user);
-    }
+  $scope.addAssignee = function(issue) {
+    IssueManager.assign(issue, $rootScope.user);
     BoardManager.updateIssue(issue);
-  }; 
+  };
+
+  $scope.removeAssignee = function(issue) {
+    IssueManager.removeAssign(issue);
+  };
 
   $scope.$watch('multipleOptions.selectedRepositories', function() {
     if ($scope.board) {
