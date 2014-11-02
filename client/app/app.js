@@ -19,6 +19,9 @@ app.config(function($httpProvider, $routeProvider, $locationProvider) {
 
 }).run(function($http, $rootScope, UserLoginService, $location, UserManager) {
 
+  // REMOVE THIS FROM HERE!!!!! GET FROM SERVER!!!
+  var clientID = "c8e53a399aaaf4423852";
+
   $rootScope.$on('$routeChangeStart', function(event, next) {
 
     if (next.params.access_token) {
@@ -33,7 +36,7 @@ app.config(function($httpProvider, $routeProvider, $locationProvider) {
     }
 
     if (next.requireLogin && !UserLoginService.isLoggedIn()){
-      window.location = 'http://github.com/login/oauth/authorize?client_id=c8e53a399aaaf4423852&scope=public_repo';
+      window.location = 'http://github.com/login/oauth/authorize?client_id='+clientID+'&scope=public_repo';
     }
   });
 
