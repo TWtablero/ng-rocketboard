@@ -25,6 +25,7 @@
     "xmlhttprequest": "^1.6.0"
   },
   "devDependencies": {
+    "imagemin-gifsicle": "^4.0.0",
     "grunt": "~0.4.4",
     "grunt-angular-templates": "^0.5.4",
     "grunt-asset-injector": "^0.1.0",
