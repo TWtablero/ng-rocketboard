@@ -7,10 +7,10 @@ module.exports = {
   mongo: {
     uri: 'mongodb://localhost/rocketboard-dev'
   },
-  
-  clientId: "c8e53a399aaaf4423852",
 
-  sectretId: "cf21bef34d5efa99fb4b8894017b9cf6c263b8a3",
+  clientId: "66ec0f591b940b1985af",
+
+  sectretId: "f65533ce3570b411195c9efc4fe30bfc0aa876fa",
 
   seedDB: true
 };
