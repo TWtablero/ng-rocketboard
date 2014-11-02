@@ -19,10 +19,10 @@
     "xmlhttprequest": "^1.6.0",
     "socket.io": "^1.0.6",
     "socket.io-client": "^1.0.6",
-    "socketio-jwt": "^2.0.2"
+    "socketio-jwt": "^2.0.2",
+    "connect-livereload": "~0.4.0"
   },
   "devDependencies": {
-    "connect-livereload": "~0.4.0",
     "grunt": "~0.4.4",
     "grunt-angular-templates": "^0.5.4",
     "grunt-asset-injector": "^0.1.0",
