@@ -32,8 +32,6 @@ exports.logout = function(req, res) {
   res.redirect("/");
 };
 
-
-
 function handleError(res, err) {
   return res.send(500, err);
 }
