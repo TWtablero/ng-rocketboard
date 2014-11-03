@@ -8,8 +8,8 @@ module.exports = {
     uri: 'mongodb://localhost/rocketboard-dev'
   },
 
-  clientId: "66ec0f591b940b1985af",
+  clientId: "c8e53a399aaaf4423852",
 
-  sectretId: "f65533ce3570b411195c9efc4fe30bfc0aa876fa"
+  sectretId: "cf21bef34d5efa99fb4b8894017b9cf6c263b8a3"
   
 };
