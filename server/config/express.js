@@ -30,14 +30,14 @@ module.exports = function(app) {
   app.use(cookieParser());
   app.use(expressSession({secret:'esemexercomnoisabalacome'}));
 
-  if ('production' === env) {
+  if ('production' === env  || 'test' === env) {
     app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
     app.use(express.static(path.join(config.root, 'public')));
     app.set('appPath', config.root + '/public');
     app.use(morgan('dev'));
   }
 
-  if ('development' === env || 'test' === env) {
+  if ('development' === env) {
     app.use(require('connect-livereload')());
     app.use(express.static(path.join(config.root, '.tmp')));
     app.use(express.static(path.join(config.root, 'client')));
