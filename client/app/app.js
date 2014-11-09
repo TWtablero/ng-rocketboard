@@ -19,12 +19,8 @@ app.config(function($httpProvider, $routeProvider, $locationProvider) {
 
 }).run(function($http, $rootScope, UserLoginService, $location, UserManager) {
 
-  // REMOVE THIS FROM HERE!!!!! GET FROM SERVER!!!
-  var clientID = "c8e53a399aaaf4423852";
-
+  // Refactory this please! :(
   $rootScope.$on('$routeChangeStart', function(event, next) {
-
-    event.preventDefault();
 
     if (next.params.access_token) {
       UserLoginService.login(next.params.access_token);
@@ -37,11 +33,13 @@ app.config(function($httpProvider, $routeProvider, $locationProvider) {
       $location.url($location.path());
     }
 
-    if (next.requireLogin && !UserLoginService.isLoggedIn()){
-      window.location = 'http://github.com/login/oauth/authorize?client_id='+clientID+'&scope=public_repo';
+    if (next.requireLogin && !UserLoginService.isLoggedIn()) {
+      $http.get("/api/env").then(function(res) {
+        window.location = 'http://github.com/login/oauth/authorize?client_id=' + res.data.clientId + '&scope=public_repo';
+      });
     }
   });
 
-}).config(function(cfpLoadingBarProvider){
+}).config(function(cfpLoadingBarProvider) {
   cfpLoadingBarProvider.includeSpinner = false;
 });
