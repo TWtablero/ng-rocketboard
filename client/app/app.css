@@ -28,7 +28,7 @@
     width: 200px;
 }
 .navbar {
-    background: url('../assets/images/back.png') gray !important;
+    background: url('/assets/images/back.png') gray !important;
     height: 65px;
     padding: 10px;
 }
