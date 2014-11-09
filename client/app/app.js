@@ -24,6 +24,8 @@ app.config(function($httpProvider, $routeProvider, $locationProvider) {
 
   $rootScope.$on('$routeChangeStart', function(event, next) {
 
+    event.preventDefault();
+
     if (next.params.access_token) {
       UserLoginService.login(next.params.access_token);
       $http.defaults.headers.common.Authorization = 'token ' + UserLoginService.getToken();
