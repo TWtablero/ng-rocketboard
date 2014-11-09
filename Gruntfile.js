@@ -332,14 +332,17 @@ module.exports = function(grunt) {
             'index.html',
             '**/*.html'
           ]
-        }, 
-        {
+        }, {
+          expand: true,
+          cwd: '.tmp/images',
+          dest: '<%= yeoman.dist %>/public/assets/images',
+          src: ['generated/*']
+        }, {
           expand: true,
           cwd: '<%= yeoman.client %>/assets/images',
           src: '{,*/}*.{png,jpg,jpeg,gif}',
           dest: '<%= yeoman.dist %>/public/assets/images'
-        },
-        {
+        }, {
           expand: true,
           dest: '<%= yeoman.dist %>',
           src: [
