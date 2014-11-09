@@ -13,7 +13,7 @@ var config = require('./config/environment');
 var app = express();
 var server = require('http').createServer(app);
 var socketio = require('socket.io')(server, {
-  serveClient: (config.env === 'production') ? false : true,
+  serveClient: (config.env === 'production' || config.env === 'test') ? false : true,
   path: '/socket.io-client'
 });
 require('./config/socketio')(socketio);
