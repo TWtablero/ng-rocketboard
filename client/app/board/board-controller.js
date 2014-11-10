@@ -40,9 +40,8 @@ angular.module('rocketBoardApp').controller('BoardController', function(Socket, 
       var issue = event.source.itemScope.issue;
       var status;
 
-      console.log(event.dest.sortableScope);
 
-      if (event.dest.sortableScope.$id === 5) {
+      if (!event.dest.sortableScope.$parent.column) {
         status = '5 - Done';
         triggerRocketAnimation();
         IssueManager.close(issue);
