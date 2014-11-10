@@ -218,3 +218,7 @@ footer {
 .clickable{
     cursor:pointer;
 }
+
+.as-sortable-item{
+    border:0;
+}
