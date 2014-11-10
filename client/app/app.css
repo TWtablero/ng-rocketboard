@@ -185,6 +185,7 @@ footer {
     display: block;
     margin-top: 9px;
     font-size: 13px;
+    padding: 0 3px;
 }
 .panel-done img {
     width: 45px;
@@ -220,5 +221,5 @@ footer {
 }
 
 .as-sortable-item{
-    border:0;
+    border:0 !important;
 }
