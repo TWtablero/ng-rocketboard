@@ -21,7 +21,7 @@ module.exports = {
       'mongodb://localhost/rocketboard'
   },
 
-  clientId: "c8e53a399aaaf4423852",
+  clientId: "ac84f4d245497c6ec382",
 
-  sectretId: "cf21bef34d5efa99fb4b8894017b9cf6c263b8a3"
+  sectretId: "a1af8198eb92fa87ffb2421db03943f856305c83"
 };
