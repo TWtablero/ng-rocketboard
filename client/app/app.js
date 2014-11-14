@@ -34,7 +34,7 @@ app.config(function($httpProvider, $routeProvider, $locationProvider) {
     }
 
     if (next.requireLogin && !UserLoginService.isLoggedIn()) {
-      $http.get("/api/env").then(function(res) {
+      $http.get('/api/env').then(function(res) {
         window.location = 'http://github.com/login/oauth/authorize?client_id=' + res.data.clientId + '&scope=public_repo';
       });
     }
