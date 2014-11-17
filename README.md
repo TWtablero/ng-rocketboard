@@ -1,4 +1,4 @@
-Rocketboard  [![Build Status](https://snap-ci.com/marcioviegas/rocketboard/branch/master/build_image)](https://snap-ci.com/marcioviegas/rocketboard/branch/master)
+Rocketboard  [![Build Status](https://snap-ci.com/RocketBoard/ng-rocketboard/branch/master/build_image)](https://snap-ci.com/RocketBoard/ng-rocketboard/branch/master)
 =========
 
 The original project can be found here: [@oliviagj/rocketboard](https://github.com/oliviagj/rocketboard)
